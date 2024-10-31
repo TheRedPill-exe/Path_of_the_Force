@@ -3,7 +3,7 @@
 
 ---
 
-![Banner](assets/banner.png) <!-- Imagen tipo banner que represente el tema del juego -->
+![Banner](assets/star-wars-chromebook-wallpaper.jpg) <!-- Imagen tipo banner que represente el tema del juego -->
 
 **Path of the Force** es un juego de rol basado en consola que permite a los jugadores explorar el universo de *Star Wars* con sus propios personajes, enfrentarse en combates y vivir aventuras a través de perfiles personalizados.
 
