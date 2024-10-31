@@ -38,6 +38,12 @@
 
 ## 🧙‍♂️ Funcionalidades
 
+### 🔹 Combate por Turnos
+El sistema de combate está basado en atributos de personajes, con turnos que permiten planear estrategias en base a la salud, fuerza y habilidades.
+
+<!-- Imagen mostrando un combate entre dos personajes -->
+![Combate](https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/star-wars-star-wars-the-rise-of-skywalker-movie-poster-poster-movie-characters-hd-wallpaper-preview.jpg)
+
 ### 🔹 Creación de Personajes
 Los jugadores pueden crear personajes seleccionando diferentes atributos. Cada personaje puede pertenecer a facciones como Jedi, Sith, o Cazarrecompensas, y cuenta con atributos únicos.
 
@@ -49,12 +55,6 @@ Cada jugador puede crear un perfil protegido por contraseña. Los datos de cada 
 
 <!-- GIF mostrando el acceso mediante contraseña y creación de perfil -->
 ![Acceso de Perfil](assets/gif/perfil_acceso.gif)
-
-### 🔹 Combate por Turnos
-El sistema de combate está basado en atributos de personajes, con turnos que permiten planear estrategias en base a la salud, fuerza y habilidades.
-
-<!-- Imagen mostrando un combate entre dos personajes -->
-![Combate](https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/star-wars-star-wars-the-rise-of-skywalker-movie-poster-poster-movie-characters-hd-wallpaper-preview.jpg)
 
 ### 🔹 Misiones y Recompensas
 Explora misiones únicas que recompensan al jugador con experiencia y objetos especiales para mejorar sus personajes.
