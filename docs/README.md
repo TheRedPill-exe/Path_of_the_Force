@@ -3,7 +3,7 @@
 
 ---
 
-![Banner](assets/star-wars-chromebook-wallpaper.jpg) <!-- Imagen tipo banner que represente el tema del juego -->
+![Banner](https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/star-wars-chromebook-wallpaper.jpg) <!-- Imagen tipo banner que represente el tema del juego -->
 
 **Path of the Force** es un juego de rol basado en consola que permite a los jugadores explorar el universo de *Star Wars* con sus propios personajes, enfrentarse en combates y vivir aventuras a través de perfiles personalizados.
 
@@ -23,8 +23,8 @@
 
 **Path of the Force** transporta al jugador a una galaxia lejana en una experiencia RPG inspirada en Star Wars. Con funcionalidades de gestión de datos en C++ y un sistema de combate por turnos, el jugador puede personalizar personajes, aceptar misiones y mejorar su equipo.
 
-<!-- GIF que muestre el menú principal del juego -->
-![Menu Principal](assets/gif/menu.gif)
+<!-- GIF que muestre el menú principal del juego  -->
+
 
 ---
 
@@ -54,7 +54,7 @@ Cada jugador puede crear un perfil protegido por contraseña. Los datos de cada 
 El sistema de combate está basado en atributos de personajes, con turnos que permiten planear estrategias en base a la salud, fuerza y habilidades.
 
 <!-- Imagen mostrando un combate entre dos personajes -->
-![Combate](assets/images/combat_example.png)
+![Combate](https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/)
 
 ### 🔹 Misiones y Recompensas
 Explora misiones únicas que recompensan al jugador con experiencia y objetos especiales para mejorar sus personajes.
