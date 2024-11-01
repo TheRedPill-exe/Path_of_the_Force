@@ -89,7 +89,7 @@ Path_of_the_Force/
 └── docs/
     └── README.md             # Documentación del proyecto
 ---
-
+```
 ## 🔒 Encriptación
 
 Cada perfil de usuario está protegido con encriptación César, asegurando la privacidad de los datos almacenados. Los datos se guardan en archivos binarios en la carpeta `assets/data`.
