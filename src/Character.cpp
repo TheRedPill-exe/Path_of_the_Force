@@ -110,3 +110,4 @@ void createCharacter(char profileName[]) {
     fwrite(&characterP, sizeof(characterP), 1, user);
     fclose(user);
 }
+    

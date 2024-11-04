@@ -9,8 +9,8 @@ using namespace std;
 
 void displayCharacter(const char* profileName) {
     Character characterP;
-    char filePath[50];
-	snprintf(filePath, sizeof(filePath), "../users/%s", profileName);
+    char filePath[100];
+	snprintf(filePath, sizeof(filePath), "../assets/data/characters/%s", profileName);
 
     FILE* user = fopen(filePath, "rb");
 

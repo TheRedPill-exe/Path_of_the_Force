@@ -13,7 +13,7 @@ struct Skill {
 
 struct Item {
     char name[50];
-    char type[12];
+    char type[20];
     int effect;
     char rarity[20];
     char description[100];
@@ -31,7 +31,7 @@ struct Character {
     int defense;
     Skill skills[3];  
     Item items[3];
-    char password[10];
+    char password[20];
 };
 
 void createCharacter(char profileName[]);

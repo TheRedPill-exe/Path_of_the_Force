@@ -4,7 +4,8 @@
 #include <fstream>
 #include <cstdio>  // Para FILE y fopen
 #include <cstring> // Para manejar cadenas
-
+#include <cctype>  // Para funciones de caracteres
+#include "Character.h"
 using namespace std;
 
 int readInt(const char* prompt, int min, int max) {
@@ -58,3 +59,10 @@ bool isName(char nameC[]) {
     }
     return true; 
 }
+/*
+void orderItems(char field[]){
+    char filePath[100];
+    replaceSpace(nameC);
+    snprintf(filePath, sizeof(filePath), "../assets/data/items/%s.txt", nameC);
+}
+*/
