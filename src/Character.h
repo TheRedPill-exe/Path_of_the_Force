@@ -31,6 +31,7 @@ struct Character {
     int defense;
     Skill skills[3];  
     Item items[3];
+    char password[10];
 };
 
 void createCharacter(char profileName[]);
