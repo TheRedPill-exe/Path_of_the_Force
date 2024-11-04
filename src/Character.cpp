@@ -6,7 +6,7 @@
 #include "Character.h"
 #include "Utilities.h"
 #include "ProfileManager.h"
-
+#include "Inventory.h"
 using namespace std;
 
 enum ItemType {
@@ -45,43 +45,82 @@ void createCharacter(char profileName[]) {
 
     cout << "It's time to create your character abilities!" << endl;
     cout << "(Whatever the description, it will deal damage with its level 1 time.)" << endl;
-    
-    // Leer y encriptar habilidades
-    for (int i = 0; i < 3; i++) {
-        Skill skill;
-    
-        cout << "Enter your character skill number " << (i + 1) << " name: ";
-        readString("", skill.name, sizeof(skill.name));
-        cout << "Enter your character skill number " << (i + 1) << " description: ";
-        readString("", skill.description, sizeof(skill.description));
-        cout << "Enter your character skill number " << (i + 1) << " level: ";
-        skill.level = readInt("", 1, 100);
-        cout << "Enter your character skill number " << (i + 1) << " cooldown: ";
-        skill.cooldown = readInt("", 1, 100);
-        cout << "Enter your character skill number " << (i + 1) << " mana cost: ";
-        skill.manaCost = readInt("", 1, 100);
-    
-        characterP.skills[i] = skill; // Asignar habilidad al arreglo
+    int option = 0;
+    cout << "Type 1 to select skills or 0 to select them: ";
+    cin >> option;
+    if (option == 1){
+        loadAndSortSkills("skill_", 50, "name");
+        
+        for (int i = 0; i < 3; i++) {
+            
+            Skill skill;
+            char skillPath[100];
+            
+            cout << "Enter the number of the skill you want to add \n(0X for the first 10 skills): ";
+            int skillNumber = readInt("", 1, 50);
+            snprintf(skillPath, sizeof(skillPath), "../assets/data/skills/skill_%02d", skillNumber);
+            FILE* skillFile = fopen("../data/skills.dat", "rb");
+            fread(&skill, sizeof(Skill), 1, skillFile );
+            characterP.skills[i] = skill;
+            fclose(skillFile);
+        }
+    }   else {
+        for (int i = 0; i < 3; i++) {
+            Skill skill;
+        
+            cout << "Enter your character skill number " << (i + 1) << " name: ";
+            readString("", skill.name, sizeof(skill.name));
+            cout << "Enter your character skill number " << (i + 1) << " description: ";
+            readString("", skill.description, sizeof(skill.description));
+            cout << "Enter your character skill number " << (i + 1) << " level: ";
+            skill.level = readInt("", 1, 100);
+            cout << "Enter your character skill number " << (i + 1) << " cooldown: ";
+            skill.cooldown = readInt("", 1, 100);
+            cout << "Enter your character skill number " << (i + 1) << " mana cost: ";
+            skill.manaCost = readInt("", 1, 100);
+        
+            characterP.skills[i] = skill; // Asignar habilidad al arreglo
+        }
     }
+    
+    cout << "Type 1 to select items or 0 to select them: ";
+    cin >> option;
+    if (option == 1) {
+    loadAndSortItems("item_", 50, "name");
 
-    // Leer y encriptar items
     for (int i = 0; i < 3; i++) {
+
         Item item;
+        char itemPath[100];
 
-        cout << "Enter your character item number " << (i + 1) << " name: ";
-        readString("", item.name, sizeof(item.name));
-        cout << "Enter your character item number " << (i + 1) << " type: ";
-        readString("", item.type, sizeof(item.type));
-        cout << "Enter your character item number " << (i + 1) << " effect: ";
-        item.effect = readInt("", 0, 30); // Asegúrate de que esto sea un entero
-        cout << "Enter your character item number " << (i + 1) << " rarity: ";
-        readString("", item.rarity, sizeof(item.rarity));
-        cout << "Enter your character item number " << (i + 1) << " description: ";
-        readString("", item.description, sizeof(item.description));
-
-        characterP.items[i] = item; // Asignar objeto al arreglo
+        cout << "Enter the number of the item you want to add \n(0X for the first 10 items): ";
+        int itemNumber = readInt("", 1, 50);
+        snprintf(itemPath, sizeof(itemPath), "../assets/data/items/item_%02d", itemNumber);
+        FILE* itemFile = fopen(itemPath, "rb");
+        fread(&item, sizeof(Item), 1, itemFile);
+        characterP.items[i] = item;
+        fclose(itemFile);
+        }
     }
+    else {
+    // Leer y encriptar items
+        for (int i = 0; i < 3; i++) {
+            Item item;
 
+            cout << "Enter your character item number " << (i + 1) << " name: ";
+            readString("", item.name, sizeof(item.name));
+            cout << "Enter your character item number " << (i + 1) << " type: ";
+            readString("", item.type, sizeof(item.type));
+            cout << "Enter your character item number " << (i + 1) << " effect: ";
+            item.effect = readInt("", 0, 30); // Asegúrate de que esto sea un entero
+            cout << "Enter your character item number " << (i + 1) << " rarity: ";
+            readString("", item.rarity, sizeof(item.rarity));
+            cout << "Enter your character item number " << (i + 1) << " description: ";
+            readString("", item.description, sizeof(item.description));
+
+            characterP.items[i] = item; // Asignar objeto al arreglo
+        }
+    }
     char passw[10];
     char keyword[10];
     cout << "Enter your password: ";

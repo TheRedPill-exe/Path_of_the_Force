@@ -10,10 +10,10 @@
 using namespace std;
 int main() {
     char profileName[50];
-    //readString("Enter the profile file name: ", profileName, sizeof(profileName));
-    //createCharacter(profileName);
-    //displayCharacter("han_solo.bin ");
-    //displayCustom("han_solo.bin ");
+    readString("Enter the profile file name: ", profileName, sizeof(profileName));
+    createCharacter(profileName);
+    displayCharacter("han_solo.bin ");
+    displayCustom(profileName);
     //char nameC[20] = {"darth vader"};
     //cout << nameC;
     //printCharac(nameC);
