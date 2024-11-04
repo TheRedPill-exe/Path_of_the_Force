@@ -31,7 +31,7 @@ void readCharacterAttributes(Character& characterP) {
     readString("Enter your character name: ", characterP.name, sizeof(characterP.name));
     readString("Enter your character species: ", characterP.species, sizeof(characterP.species));
     readString("Enter your character faction: ", characterP.faction, sizeof(characterP.faction));
-    
+
     characterP.health = readInt("Enter your character health (1 - 100): ", 1, 100);
     characterP.strength = readInt("Enter your character strength (1 - 100): ", 1, 100);
     characterP.agility = readInt("Enter your character agility (1 - 100): ", 1, 100);

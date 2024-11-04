@@ -49,7 +49,18 @@ void bubbleSortByName(Item* items, int size) {
     }
 }
 
+// Ordena Items por tipo
+void bubbleSortByType(Item* items, int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (strcmp(items[j].type, items[j + 1].type) > 0) {
+                swap(items[j], items[j + 1]);
+            }
+        }
+    }
+}
 
+// Modifica la función loadAndSortItems para incluir la nueva opción de ordenación
 void loadAndSortItems(const char* filePrefix, int numberOfItems, const char* sortBy) {
     Item* items = new Item[numberOfItems];  // Memoria dinámica para los ítems
 
@@ -60,18 +71,22 @@ void loadAndSortItems(const char* filePrefix, int numberOfItems, const char* sor
         cout << items[i].name << endl;
     }
 
+    // Ordenar según el criterio especificado
     if (strcmp(sortBy, "effect") == 0) {
         bubbleSortByEffect(items, numberOfItems);
     } else if (strcmp(sortBy, "rarity") == 0) {
         bubbleSortByRarity(items, numberOfItems);
     } else if (strcmp(sortBy, "name") == 0) {
         bubbleSortByName(items, numberOfItems);
+    } else if (strcmp(sortBy, "type") == 0) {
+        bubbleSortByType(items, numberOfItems);
     }
 
     displayItems(items, numberOfItems);
 
     delete[] items;  // Liberar la memoria después de mostrar los ítems
 }
+
 void readSkillFromFile(Skill& skill, const char* fileName) {
     char filePath[40];
     snprintf(filePath, sizeof(filePath), "../assets/data/skills/%s", fileName);

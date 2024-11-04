@@ -26,17 +26,28 @@ int readInt(const char* prompt, int min, int max) {
         }
     }
 }
-
-// Funci�n para leer cadenas con validaci�n
 void readString(const char* prompt, char* buffer, size_t size) {
     while (true) {
         cout << prompt;
         cin.getline(buffer, size);
 
-        if (buffer[0] == '\0') { // Verificar si la cadena est� vac�a
-            cout << "Input cannot be empty. Please enter a valid input." << endl;
+        // Check if the input is empty or contains only whitespace
+        bool isEmptyOrWhitespace = true;
+        for (size_t i = 0; i < strlen(buffer); i++) {
+            if (!isspace(buffer[i])) {
+                isEmptyOrWhitespace = false; // Found a non-whitespace character
+                break;
+            }
+        }
+
+        if (isEmptyOrWhitespace) { // If the string is empty or just whitespace
+            cout << "Input cannot be empty or whitespace. Please enter a valid input." << endl;
+        } else if (cin.fail()) { // Check for input failure
+            cin.clear(); // Clear the fail state
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+            cout << "Input error. Please try again." << endl;
         } else {
-            break; // Salir del ciclo si la entrada es v�lida
+            break; // Exit the loop if the input is valid
         }
     }
 }

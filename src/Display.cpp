@@ -7,11 +7,13 @@
 #include <iomanip>
 using namespace std;
 
-void displayCharacter(const char* profileName) {
+void displayCharacter(char* profileName) {
     Character characterP;
     char filePath[100];
-	snprintf(filePath, sizeof(filePath), "../assets/data/characters/%s", profileName);
-
+    replaceSpace(profileName);
+    cout << "Profile name: " << profileName << endl;
+	snprintf(filePath, sizeof(filePath), "../assets/data/characters/%s.txt", profileName);
+    cout << "File path: " << filePath << endl;
     FILE* user = fopen(filePath, "rb");
 
     if (user == NULL) {
@@ -54,7 +56,7 @@ void displayCharacter(const char* profileName) {
     }
 }
 
-void displayCustom(const char* profileName) {
+void displayCustom(char* profileName) {
     Character characterP;
     char filePath[50];
     snprintf(filePath, sizeof(filePath), "../users/%s", profileName);
