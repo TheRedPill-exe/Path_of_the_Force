@@ -6,14 +6,15 @@
 #include <string>
 #include "Display.h"
 #include "Character.h"
+#include "Utilities.h"
 
 using namespace std;
+
 enum ItemType {
     WEAPON,
     ARMOR,
     POTION,
-    ACCESSORY,
-    OTHER
+    ACCESSORY
 };
 
 enum Rarity {
@@ -24,39 +25,7 @@ enum Rarity {
     LEGENDARY
 };
 
-// Función para leer enteros con validación
-int readInt(const char* prompt, int min, int max) {
-    int value;
-    while (true) {
-        cout << prompt;
-        cin >> value;
-
-        if (cin.fail() || value < min || value > max) {
-            cin.clear(); // Limpiar el estado de error
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer
-            cout << "Invalid input. Please enter a number between " << min << " and " << max << "." << endl;
-        } else {
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer después de una entrada válida
-            return value;
-        }
-    }
-}
-
-// Función para leer cadenas con validación
-void readString(const char* prompt, char* buffer, size_t size) {
-    while (true) {
-        cout << prompt;
-        cin.getline(buffer, size);
-
-        if (buffer[0] == '\0') { // Verificar si la cadena está vacía
-            cout << "Input cannot be empty. Please enter a valid input." << endl;
-        } else {
-            break; // Salir del ciclo si la entrada es válida
-        }
-    }
-}
-
-// Función para crear un personaje y pedir todos los datos necesarios
+// Funciï¿½n para crear un personaje y pedir todos los datos necesarios
 void createCharacter(char profileName[]) {
     Character characterP;
     
@@ -123,7 +92,6 @@ void createCharacter(char profileName[]) {
 	cout << "Character created successfully!" << endl;
     fwrite(&characterP, sizeof(characterP), 1, user);
     fclose(user);
-    
     
 }
 
