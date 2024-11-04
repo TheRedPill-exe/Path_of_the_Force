@@ -6,6 +6,8 @@
 #include <cstring> // Para manejar cadenas
 #include <cctype>  // Para funciones de caracteres
 #include "Character.h"
+#include "Inventory.h"
+
 using namespace std;
 
 int readInt(const char* prompt, int min, int max) {
@@ -59,10 +61,25 @@ bool isName(char nameC[]) {
     }
     return true; 
 }
-/*
-void orderItems(char field[]){
-    char filePath[100];
-    replaceSpace(nameC);
-    snprintf(filePath, sizeof(filePath), "../assets/data/items/%s.txt", nameC);
+bool selectOrCreate(char prompt[], char filePath[], char fileName[], char fileType[]) {
+    char option;
+    cout << prompt;
+    cin >> option;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer
+    if (option == 's' || option == 'S') {
+        cout << "Skills to choose:";
+        
+        loadAndSortSkills("skill_", 40, "name");  
+        cout << "Enter the name of the " << fileName << " you want to select: ";
+        readString("", filePath, 100);
+        return true;
+    } else if (option == 'c' || option == 'C') {
+        cout << "Enter the name of the new " << fileName << ": ";
+        readString("", filePath, 100);
+        strcat(filePath, fileType);
+        return false;
+    } else {
+        cout << "Invalid option. Please enter 's' to select an existing " << fileName << " or 'c' to create a new one." << endl;
+        return selectOrCreate(prompt, filePath, fileName, fileType);
+    }
 }
-*/

@@ -17,7 +17,9 @@ int main() {
     //char nameC[20] = {"darth vader"};
     //cout << nameC;
     //printCharac(nameC);
-    loadAndSortItems("item_", 40, "effect");  
+    
+    
+    
     system("pause");
     return 0;
 }

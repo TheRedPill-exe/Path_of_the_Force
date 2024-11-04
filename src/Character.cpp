@@ -45,7 +45,7 @@ void createCharacter(char profileName[]) {
 
     cout << "It's time to create your character abilities!" << endl;
     cout << "(Whatever the description, it will deal damage with its level 1 time.)" << endl;
-
+    
     // Leer y encriptar habilidades
     for (int i = 0; i < 3; i++) {
         Skill skill;
@@ -110,4 +110,3 @@ void createCharacter(char profileName[]) {
     fwrite(&characterP, sizeof(characterP), 1, user);
     fclose(user);
 }
-    
