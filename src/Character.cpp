@@ -23,15 +23,11 @@ enum Rarity {
     EPIC,
     LEGENDARY
 };
+void initializeCharacterFile(char filePath[], FILE*& user) {
+    user = fopen(filePath, "wb+");
+}
 
-// Funci�n para crear un personaje y pedir todos los datos necesarios
-void createCharacter(char profileName[]) {
-    Character characterP;
-    char filePath[30];
-    snprintf(filePath, sizeof(filePath), "../users/%s", profileName);
-    FILE* user = fopen(filePath, "wb+");
-    
-    // Leer y encriptar los datos del personaje
+void readCharacterAttributes(Character& characterP) {
     readString("Enter your character name: ", characterP.name, sizeof(characterP.name));
     readString("Enter your character species: ", characterP.species, sizeof(characterP.species));
     readString("Enter your character faction: ", characterP.faction, sizeof(characterP.faction));
@@ -42,98 +38,72 @@ void createCharacter(char profileName[]) {
     characterP.intelligence = readInt("Enter your character intelligence (1 - 100): ", 1, 100);
     characterP.attackPower = readInt("Enter your character attack power (1 - 100): ", 1, 100);
     characterP.defense = readInt("Enter your character defense (1 - 100): ", 1, 100);
+}
 
-    cout << "It's time to create your character abilities!" << endl;
-    cout << "(Whatever the description, it will deal damage with its level 1 time.)" << endl;
-    int option = 0;
-    cout << "Type 1 to select skills or 0 to select them: ";
-    cin >> option;
-    if (option == 1){
+void configureCharacterSkills(Character& characterP, int option) {
+    if (option == 1) {
         loadAndSortSkills("skill_", 50, "name");
-        
+
         for (int i = 0; i < 3; i++) {
-            
             Skill skill;
+            int skillNumber = readInt("Enter the number of the skill you want to add \n(0X for the first 10 skills): ", 1, 50);
             char skillPath[100];
-            
-            cout << "Enter the number of the skill you want to add \n(0X for the first 10 skills): ";
-            int skillNumber = readInt("", 1, 50);
-            snprintf(skillPath, sizeof(skillPath), "../assets/data/skills/skill_%02d", skillNumber);
-            FILE* skillFile = fopen("../data/skills.dat", "rb");
-            fread(&skill, sizeof(Skill), 1, skillFile );
+            snprintf(skillPath, sizeof(skillPath), "../assets/data/skills/skill_%02d.bin", skillNumber);
+
+            FILE* skillFile = fopen(skillPath, "rb");
+            fread(&skill, sizeof(Skill), 1, skillFile);
             characterP.skills[i] = skill;
             fclose(skillFile);
         }
-    }   else {
+    } else {
         for (int i = 0; i < 3; i++) {
             Skill skill;
-        
-            cout << "Enter your character skill number " << (i + 1) << " name: ";
-            readString("", skill.name, sizeof(skill.name));
-            cout << "Enter your character skill number " << (i + 1) << " description: ";
-            readString("", skill.description, sizeof(skill.description));
-            cout << "Enter your character skill number " << (i + 1) << " level: ";
-            skill.level = readInt("", 1, 100);
-            cout << "Enter your character skill number " << (i + 1) << " cooldown: ";
-            skill.cooldown = readInt("", 1, 100);
-            cout << "Enter your character skill number " << (i + 1) << " mana cost: ";
-            skill.manaCost = readInt("", 1, 100);
-        
-            characterP.skills[i] = skill; // Asignar habilidad al arreglo
+            readString("Enter your character skill name: ", skill.name, sizeof(skill.name));
+            readString("Enter your character skill description: ", skill.description, sizeof(skill.description));
+            skill.level = readInt("Enter your character skill level: ", 1, 100);
+            skill.cooldown = readInt("Enter your character skill cooldown: ", 1, 100);
+            skill.manaCost = readInt("Enter your character skill mana cost: ", 1, 100);
+            characterP.skills[i] = skill;
         }
     }
-    
-    cout << "Type 1 to select items or 0 to select them: ";
-    cin >> option;
+}
+
+void configureCharacterItems(Character& characterP, int option) {
     if (option == 1) {
-    loadAndSortItems("item_", 50, "name");
+        loadAndSortItems("item_", 50, "name");
 
-    for (int i = 0; i < 3; i++) {
-
-        Item item;
-        char itemPath[100];
-
-        cout << "Enter the number of the item you want to add \n(0X for the first 10 items): ";
-        int itemNumber = readInt("", 1, 50);
-        snprintf(itemPath, sizeof(itemPath), "../assets/data/items/item_%02d", itemNumber);
-        FILE* itemFile = fopen(itemPath, "rb");
-        fread(&item, sizeof(Item), 1, itemFile);
-        characterP.items[i] = item;
-        fclose(itemFile);
-        }
-    }
-    else {
-    // Leer y encriptar items
         for (int i = 0; i < 3; i++) {
             Item item;
+            int itemNumber = readInt("Enter the number of the item you want to add \n(0X for the first 10 items): ", 1, 50);
+            char itemPath[100];
+            snprintf(itemPath, sizeof(itemPath), "../assets/data/items/item_%02d.bin", itemNumber);
 
-            cout << "Enter your character item number " << (i + 1) << " name: ";
-            readString("", item.name, sizeof(item.name));
-            cout << "Enter your character item number " << (i + 1) << " type: ";
-            readString("", item.type, sizeof(item.type));
-            cout << "Enter your character item number " << (i + 1) << " effect: ";
-            item.effect = readInt("", 0, 30); // Asegúrate de que esto sea un entero
-            cout << "Enter your character item number " << (i + 1) << " rarity: ";
-            readString("", item.rarity, sizeof(item.rarity));
-            cout << "Enter your character item number " << (i + 1) << " description: ";
-            readString("", item.description, sizeof(item.description));
-
-            characterP.items[i] = item; // Asignar objeto al arreglo
+            FILE* itemFile = fopen(itemPath, "rb");
+            fread(&item, sizeof(Item), 1, itemFile);
+            characterP.items[i] = item;
+            fclose(itemFile);
+        }
+    } else {
+        for (int i = 0; i < 3; i++) {
+            Item item;
+            readString("Enter your character item name: ", item.name, sizeof(item.name));
+            readString("Enter your character item type: ", item.type, sizeof(item.type));
+            item.effect = readInt("Enter your character item effect: ", 0, 30);
+            readString("Enter your character item rarity: ", item.rarity, sizeof(item.rarity));
+            readString("Enter your character item description: ", item.description, sizeof(item.description));
+            characterP.items[i] = item;
         }
     }
-    char passw[10];
-    char keyword[10];
-    cout << "Enter your password: ";
-    cin >> passw;
-    cout << "Enter a keyword: ";
-    cin >> keyword;
-    encrypt(passw, keyword);
-    strcpy(characterP.password, passw); // Copia la contraseña encriptada
+}
 
-    // Encriptar los campos de texto del personaje
+void encryptCharacterData(Character& characterP, char password[], char keyword[]) {
+    encrypt(password, keyword);
+    strcpy(characterP.password, password);
+
     encrypt(characterP.name, keyword);
     encrypt(characterP.species, keyword);
     encrypt(characterP.faction, keyword);
+
     for (int i = 0; i < 3; i++) {
         encrypt(characterP.skills[i].name, keyword);
         encrypt(characterP.skills[i].description, keyword);
@@ -144,8 +114,42 @@ void createCharacter(char profileName[]) {
         encrypt(characterP.items[i].rarity, keyword);
         encrypt(characterP.items[i].description, keyword);
     }
+}
 
+void createCharacter(char profileName[]) {
+    Character characterP;
+    char filePath[30];
+    snprintf(filePath, sizeof(filePath), "../users/%s", profileName);
+    FILE* user;
+    
+    // Inicializar archivo
+    initializeCharacterFile(filePath, user);
+    
+    // Leer atributos del personaje
+    readCharacterAttributes(characterP);
+    
+    // Configurar habilidades del personaje
+    int option;
+    cout << "Type 1 to select skills or 0 to select them manually: ";
+    cin >> option;
+    configureCharacterSkills(characterP, option);
+    
+    // Configurar objetos del personaje
+    cout << "Type 1 to select items or 0 to select them manually: ";
+    cin >> option;
+    configureCharacterItems(characterP, option);
+
+    // Encriptar datos
+    char password[10], keyword[10];
+    cout << "Enter your password: ";
+    cin >> password;
+    cout << "Enter a keyword: ";
+    cin >> keyword;
+    encryptCharacterData(characterP, password, keyword);
+
+    // Guardar y cerrar archivo
     cout << "Character created successfully!" << endl;
     fwrite(&characterP, sizeof(characterP), 1, user);
     fclose(user);
 }
+

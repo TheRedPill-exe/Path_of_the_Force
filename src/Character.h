@@ -36,6 +36,11 @@ struct Character {
 
 void createCharacter(char profileName[]);
 void readString(const char* prompt, char* buffer, size_t size);
+void configureCharacterSkills(Character& characterP, int option) ;
+void configureCharacterItems(Character& characterP, int option);
+void readCharacterAttributes(Character& characterP);
+void loadAndSortSkills(const char* prefix, int numSkills, const char* sortBy);
+void loadAndSortItems(const char* prefix, int numItems, const char* sortBy);
 
 #endif // CHARACTER_H
 
