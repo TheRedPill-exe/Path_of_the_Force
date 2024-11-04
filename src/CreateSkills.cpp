@@ -73,7 +73,7 @@ int main() {
     for (int i = 0; i < 48; i++) {
         char fileName[100];
         // Generar el nombre del archivo usando el nombre de la habilidad
-        sprintf(fileName, "../assets/data/skills/%s.bin", skills[i].name);
+        sprintf(fileName, "../assets/data/skills/skill_%02d.bin", i+1);
         saveSkillToFile(skills[i], fileName);
     }
 

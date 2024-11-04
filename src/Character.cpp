@@ -73,7 +73,7 @@ void createCharacter(char profileName[]) {
         cout << "Enter your character item number " << (i + 1) << " type: ";
         readString("", item.type, sizeof(item.type));
         cout << "Enter your character item number " << (i + 1) << " effect: ";
-        item.effect = readInt("", 0, 10); // Asegúrate de que esto sea un entero
+        item.effect = readInt("", 0, 30); // Asegúrate de que esto sea un entero
         cout << "Enter your character item number " << (i + 1) << " rarity: ";
         readString("", item.rarity, sizeof(item.rarity));
         cout << "Enter your character item number " << (i + 1) << " description: ";

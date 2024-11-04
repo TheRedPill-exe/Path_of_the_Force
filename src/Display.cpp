@@ -4,7 +4,7 @@
 #include <cstdio>  // Para FILE y fopen
 #include <cstring> // Para manejar cadenas
 #include "ProfileManager.h"
-
+#include <iomanip>
 using namespace std;
 
 void displayCharacter(const char* profileName) {
@@ -145,3 +145,44 @@ void printCharac(char nameC[]) {
         fclose(user); // Cierra el archivo
     }
 }
+
+void displayItems(const Item* items, int size) {
+    cout << "Items sorted:\n";
+    cout << "--------------------------------------------------------------\n";
+    cout << "| Name                     | Type          | Effect | Rarity  |\n";
+    cout << "--------------------------------------------------------------\n";
+    
+    for (int i = 0; i < size; i++) {
+        cout << "| " << left << setw(25) << items[i].name 
+             << "| " << left << setw(13) << items[i].type   
+             << "| " << right << setw(6) << items[i].effect 
+             << "| " << left << setw(9) << items[i].rarity << " |\n";
+    }
+    
+    cout << "-------------------------------------------------------------\n";
+    cout << "Descriptions:\n";
+    for (int i = 0; i < size; i++) {
+        cout << "Item " << (i + 1) << ": " << items[i].description << endl;
+    }
+}
+
+void displaySkills(const Skill* skills, int size) {
+    cout << "Skills:\n";
+    cout << "----------------------------------------------------------\n";
+    cout << "| Name                     | Level | Cooldown | Mana Cost |\n";
+    cout << "----------------------------------------------------------\n";
+    
+    for (int i = 0; i < size; i++) {
+        cout << "| " << left << setw(25) << skills[i].name 
+             << "| " << right << setw(6) << skills[i].level 
+             << "| " << right << setw(9) << skills[i].cooldown 
+             << "| " << right << setw(10) << skills[i].manaCost << " |\n";
+    }
+    
+    cout << "----------------------------------------------------------\n";
+    cout << "Descriptions:\n";
+    for (int i = 0; i < size; i++) {
+        cout << "Skill " << (i + 1) << ": " << skills[i].description << endl;
+    }
+}
+
