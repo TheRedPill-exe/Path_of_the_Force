@@ -52,7 +52,26 @@ bool signIn(char passw[], const char* profileName, const char* key) {
     }
 }
 
-void modifyCharacter(char profileName[]) {
+void modifyCharacterAttributes(Character& characterP) {
+    cout << "\n-- Modify Basic Attributes --" << endl;
+    readCharacterAttributes(characterP);
+}
+
+void modifyCharacterSkills(Character& characterP) {
+    int option;
+    cout << "\nType 1 to select skills from list or 0 to enter manually: ";
+    cin >> option;
+    configureCharacterSkills(characterP, option);
+}
+
+void modifyCharacterItems(Character& characterP) {
+    int option;
+    cout << "\nType 1 to select items from list or 0 to enter manually: ";
+    cin >> option;
+    configureCharacterItems(characterP, option);
+    
+}
+void modifyCharacter(char profileName[], const char key[]) {
     Character characterP;
     char filePath[30];
     snprintf(filePath, sizeof(filePath), "../users/%s", profileName);
@@ -62,9 +81,36 @@ void modifyCharacter(char profileName[]) {
         cout << "Character profile not found!" << endl;
         return;
     }
-    
+
+    // Leer el personaje encriptado
     fread(&characterP, sizeof(Character), 1, user);
-    
+
+    // Desencriptar para poder trabajar en texto plano
+    //decrypt(characterP.password, key);
+    decrypt(characterP.name, key);
+    decrypt(characterP.species, key);
+    decrypt(characterP.faction, key);
+    for (int i = 0; i < 3; i++) {
+        decrypt(characterP.skills[i].name, key);
+        decrypt(characterP.skills[i].description, key);
+        decrypt(characterP.items[i].name, key);
+        decrypt(characterP.items[i].type, key);
+        decrypt(characterP.items[i].rarity, key);
+        decrypt(characterP.items[i].description, key);
+    }
+
+    // Solicitar y verificar la contraseña
+    char inputPassword[20];
+    cout << "Enter your password: ";
+    cin >> inputPassword;
+    encrypt(inputPassword, key);
+    if (strcmp(inputPassword, characterP.password) != 0) {
+        cout << "Incorrect password. Access denied." << endl;
+        fclose(user);
+        return;
+    }
+
+    // Menú de modificación
     int option;
     do {
         cout << "\n--- Modify Character Menu ---" << endl;
@@ -86,9 +132,23 @@ void modifyCharacter(char profileName[]) {
                 modifyCharacterItems(characterP);
                 break;
             case 4:
+                // Reencriptar datos antes de guardar
+                encrypt(characterP.password, key);
+                encrypt(characterP.name, key);
+                encrypt(characterP.species, key);
+                encrypt(characterP.faction, key);
+                for (int i = 0; i < 3; i++) {
+                    encrypt(characterP.skills[i].name, key);
+                    encrypt(characterP.skills[i].description, key);
+                    encrypt(characterP.items[i].name, key);
+                    encrypt(characterP.items[i].type, key);
+                    encrypt(characterP.items[i].rarity, key);
+                    encrypt(characterP.items[i].description, key);
+                }
+                // Guardar en archivo
                 fseek(user, 0, SEEK_SET);
                 fwrite(&characterP, sizeof(Character), 1, user);
-                cout << "Changes saved successfully!" << endl;
+                cout << "Changes saved and encrypted successfully!" << endl;
                 break;
             default:
                 cout << "Invalid option. Please try again." << endl;
@@ -96,23 +156,4 @@ void modifyCharacter(char profileName[]) {
     } while (option != 4);
 
     fclose(user);
-}
-
-void modifyCharacterAttributes(Character& characterP) {
-    cout << "\n-- Modify Basic Attributes --" << endl;
-    readCharacterAttributes(characterP);
-}
-
-void modifyCharacterSkills(Character& characterP) {
-    int option;
-    cout << "\nType 1 to select skills from list or 0 to enter manually: ";
-    cin >> option;
-    configureCharacterSkills(characterP, option);
-}
-
-void modifyCharacterItems(Character& characterP) {
-    int option;
-    cout << "\nType 1 to select items from list or 0 to enter manually: ";
-    cin >> option;
-    configureCharacterItems(characterP, option);
 }
