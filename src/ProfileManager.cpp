@@ -86,7 +86,6 @@ void modifyCharacter(char profileName[], const char key[]) {
     fread(&characterP, sizeof(Character), 1, user);
 
     // Desencriptar para poder trabajar en texto plano
-    //decrypt(characterP.password, key);
     decrypt(characterP.name, key);
     decrypt(characterP.species, key);
     decrypt(characterP.faction, key);
@@ -133,7 +132,6 @@ void modifyCharacter(char profileName[], const char key[]) {
                 break;
             case 4:
                 // Reencriptar datos antes de guardar
-                encrypt(characterP.password, key);
                 encrypt(characterP.name, key);
                 encrypt(characterP.species, key);
                 encrypt(characterP.faction, key);
@@ -156,4 +154,46 @@ void modifyCharacter(char profileName[], const char key[]) {
     } while (option != 4);
 
     fclose(user);
+}
+
+bool deleteCharacter(const char* fileName, const char* key) {
+    char filePath[50];
+    snprintf(filePath, sizeof(filePath), "../users/%s", fileName);
+    FILE* file = fopen(filePath, "rb");
+    Character characterP;
+    
+    // Verificar si el archivo existe
+    if (!file) {
+        cout << "Error: File not found." << endl;
+        return false;
+    }
+
+    // Leer la contraseña almacenada en el archivo
+    fread(&characterP, sizeof(characterP), 1 , file);
+    fclose(file);
+
+    // Solicitar la contraseña al usuario
+    char inputPassword[20];
+    cout << "Enter your password: ";
+    cin >> inputPassword;
+
+    // Encriptar la contraseña ingresada
+    encrypt(inputPassword, key);
+    cout << inputPassword << endl;
+    cout << characterP.password << endl;
+
+    // Verificar que coincida con la contraseña almacenada
+    if (strcmp(inputPassword, characterP.password) != 0) {
+        cout << "Incorrect password. Access denied." << endl;
+        return false;
+    }
+
+    // Eliminar el archivo si la contraseña es correcta
+    if (remove(filePath) == 0) {
+        cout << "File deleted successfully." << endl;
+        return true;
+    } else {
+        perror("Error");
+        return false;
+    }
 }

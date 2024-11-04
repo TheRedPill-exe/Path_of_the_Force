@@ -97,6 +97,7 @@ void configureCharacterItems(Character& characterP, int option) {
 }
 
 void encryptCharacterData(Character& characterP, char password[], char keyword[]) {
+    
     encrypt(password, keyword);
     strcpy(characterP.password, password);
 

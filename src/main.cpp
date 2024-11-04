@@ -14,7 +14,8 @@ int main() {
     readString("Enter the profile file name: ", profileName, sizeof(profileName));
     //createCharacter(profileName);
     //displayCharacter("darth_vader.bin");
-    modifyCharacter(profileName, "queso");
+    //modifyCharacter(profileName, "queso");
+    deleteCharacter(profileName, "queso");
     displayCustom(profileName);
     //char nameC[20] = {"darth vader"};
     //cout << nameC;
