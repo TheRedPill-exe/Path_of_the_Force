@@ -1,41 +1,30 @@
 #include <iostream>
 #include <stdio.h>
 #include <limits>
+#include <iostream>
+#include <vector>
+#include <string>
+#include "Display.h"
+#include "Character.h"
+
 using namespace std;
-
-struct Skill {
-    char name[50];
-    char description[100];
-    char type[15];
-    int cooldown;
-    int level;
-    int manaCost;
+enum ItemType {
+    WEAPON,
+    ARMOR,
+    POTION,
+    ACCESSORY,
+    OTHER
 };
 
-struct Item {
-    char name[50];
-    char type[20];
-    int effect;
-    char rarity[20];
-    char description[100];
+enum Rarity {
+    COMMON,
+    UNCOMMON,
+    RARE,
+    EPIC,
+    LEGENDARY
 };
 
-struct Character {
-    char name[25];
-    char species[15];
-    char faction[15];
-
-    int health;
-    int strength;
-    int agility;
-    int intelligence;
-
-    int attackPower;
-    int defense;
-
-    Skill skills[3]; // Arreglo de exactamente 3 habilidades
-    Item items[3];   // Arreglo de exactamente 3 objetos
-};
+// Función para leer enteros con validación
 int readInt(const char* prompt, int min, int max) {
     int value;
     while (true) {
@@ -57,7 +46,6 @@ int readInt(const char* prompt, int min, int max) {
 void readString(const char* prompt, char* buffer, size_t size) {
     while (true) {
         cout << prompt;
-        cin.ignore(); // Limpiar el buffer antes de usar getline
         cin.getline(buffer, size);
 
         if (buffer[0] == '\0') { // Verificar si la cadena está vacía
@@ -68,73 +56,75 @@ void readString(const char* prompt, char* buffer, size_t size) {
     }
 }
 
+// Función para crear un personaje y pedir todos los datos necesarios
 void createCharacter(char profileName[]) {
     Character characterP;
-	
-	FILE* user = fopen(profileName, "wb+");
-	
-    cout << "Enter your character name: ";
-    cin >> characterP.name;
-    cout << "Enter your character species: ";
-    cin >> characterP.species;
-    cout << "Enter your character faction: ";
-    cin >> characterP.faction;
-    cout << "Enter your character health: ";
-    cin >> characterP.health;
-    cout << "Enter your character strength: ";
-    cin >> characterP.strength;
-    cout << "Enter your character agility: ";
-    cin >> characterP.agility;
-    cout << "Enter your character intelligence: ";
-    cin >> characterP.intelligence;
-    cout << "Enter your character attack power: ";
-    cin >> characterP.attackPower;
-    cout << "Enter your character defense: ";
-    cin >> characterP.defense;
+    
+    FILE* user = fopen(profileName, "wb+");
+    
+    readString("Enter your character name: ", characterP.name, sizeof(characterP.name));
+    readString("Enter your character species: ", characterP.species, sizeof(characterP.species));
+    readString("Enter your character faction: ", characterP.faction, sizeof(characterP.faction));
+    
+    characterP.health = readInt("Enter your character health (1 - 100): ", 1, 100);
+    characterP.strength = readInt("Enter your character strength (1 - 100): ", 1, 100);
+    characterP.agility = readInt("Enter your character agility (1 - 100): ", 1, 100);
+    characterP.intelligence = readInt("Enter your character intelligence (1 - 100): ", 1, 100);
+    characterP.attackPower = readInt("Enter your character attack power (1 - 100): ", 1, 100);
+    characterP.defense = readInt("Enter your character defense (1 - 100): ", 1, 100);
+    
+    
+    cout << "it's time to create your character habilities!" << endl;
+    cout << "(Whatever the description, it will deal damage with its level 1 time.)" << endl;
+    
 
     for (int i = 0; i < 3; i++) {
-        Skill skill;
+	    Skill skill;
+	
+	    cout << "Enter your character skill number " << (i + 1) << " name: ";
+	    readString("", skill.name, sizeof(skill.name));
+	    
+	    cout << "Enter your character skill number " << (i + 1) << " description: ";
+	    readString("", skill.description, sizeof(skill.description));
+	    
+	    cout << "Enter your character skill number " << (i + 1) << " level: ";
+	    skill.level = readInt("", 1, 100);
+	    
+	    cout << "Enter your character skill number " << (i + 1) << " cooldown: ";
+	    skill.cooldown = readInt("", 1, 100);
+	    
+	    cout << "Enter your character skill number " << (i + 1) << " mana cost: ";
+	    skill.manaCost = readInt("", 1, 100);
+	
+	    characterP.skills[i] = skill; // Asignar habilidad al arreglo
+	}
+	
+	for (int i = 0; i < 3; i++) {
+	    Item item;
+	
+	    cout << "Enter your character item number " << (i + 1) << " name: ";
+	    readString("", item.name, sizeof(item.name));
+	    
+	    cout << "Enter your character item number " << (i + 1) << " type: ";
+	    readString("", item.type, sizeof(item.type));
+	    
+	    cout << "Enter your character item number " << (i + 1) << " effect: ";
+	    item.effect = ("", 0,10);
+	    
+	    cout << "Enter your character item number " << (i + 1) << " rarity: ";
+	    readString("", item.rarity , sizeof(item.rarity));
+	    
+	    cout << "Enter your character item number " << (i + 1) << " description: ";
+	    readString("", item.description, sizeof(item.description));
+	
+	    characterP.items[i] = item; // Asignar objeto al arreglo
+	}
 
-        cout << "Enter your character skill number " << (i + 1) << " name: ";
-        cin.ignore(); // Limpiar el buffer antes de usar getline
-        cin.getline(skill.name, 50);
-        cout << "Enter your character skill number " << (i + 1) << " description: ";
-        cin.getline(skill.description, 100);
-        cout << "Enter your character skill number " << (i + 1) << " level: ";
-        cin >> skill.level;
-        cout << "Enter your character skill number " << (i + 1) << " cooldown: ";
-        cin >> skill.cooldown;
-        cout << "Enter your character skill number " << (i + 1) << " mana cost: ";
-        cin >> skill.manaCost;
-
-        characterP.skills[i] = skill; // Asignar habilidad al arreglo
-    }
-
-    for (int i = 0; i < 3; i++) {
-        Item item;
-
-        cout << "Enter your character item number " << (i + 1) << " name: ";
-        cin.ignore(); // Limpiar el buffer antes de usar getline
-        cin.getline(item.name, 50);
-        cout << "Enter your character item number " << (i + 1) << " type: ";
-        cin >> item.type;
-        cout << "Enter your character item number " << (i + 1) << " effect: ";
-        cin >> item.effect;
-        cout << "Enter your character item number " << (i + 1) << " rarity: ";
-        cin >> item.rarity;
-        cout << "Enter your character item number " << (i + 1) << " description: ";
-        cin.ignore(); // Limpiar el buffer antes de usar getline
-        cin.getline(item.description, 100);
-
-        characterP.items[i] = item; // Asignar objeto al arreglo
-    }
-
+	cout << "Character created successfully!" << endl;
     fwrite(&characterP, sizeof(characterP), 1, user);
     fclose(user);
+    
+    
 }
 
-int main() {
-    createCharacter("profile1.dat");
-    return 0;
-}
 
