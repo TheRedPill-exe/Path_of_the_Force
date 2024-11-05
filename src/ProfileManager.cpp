@@ -179,8 +179,6 @@ bool deleteCharacter(const char* fileName, const char* key) {
 
     // Encriptar la contraseña ingresada
     encrypt(inputPassword, key);
-    cout << inputPassword << endl;
-    cout << characterP.password << endl;
 
     // Verificar que coincida con la contraseña almacenada
     if (strcmp(inputPassword, characterP.password) != 0) {

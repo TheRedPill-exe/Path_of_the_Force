@@ -37,15 +37,27 @@ int main() {
         switch (choice) {
             case 1:
                 cout << "Enter the profile filename: ";
-                cin >> profileName;
+                readString("", profileName, sizeof(profileName));
                 createCharacter(profileName);
                 break;
             case 2:
-                cout << "Enter the name of the character to show: ";
-                cin >> profileName;
-                displayCustom(profileName);
+                int displayChoice;
+                cout << "Enter the option to show: \n1 For default characters.\n2 For custom characters:\n";
+                displayChoice = readInt("", 1, 2);
+                cout << "Enter the name of the character to display: ";
+                readString("", profileName, sizeof(profileName));
+                switch (displayChoice) {
+                    case 1:
+                        displayCharacter(profileName);
+                        break;
+                    case 2:
+                        displayCustom(profileName);
+                        break;
+                    default:
+                        cout << "Invalid option. Please try again." << endl;
+                }
+
                 break;
-            case 3: {
                 cout << "Enter the name of the character to modify: ";
                 cin >> profileName;
                 cout << "Enter the password: "; // Prompt for password
@@ -53,11 +65,11 @@ int main() {
                 cin >> password;
                 modifyCharacter(profileName, password); // Pass the entered password
                 break;
-            }
+            
             case 4: {
                 cout << "Enter the name of the character to delete: ";
                 cin >> profileName;
-                cout << "Enter the password: "; // Prompt for password
+                cout << "Enter the key: "; // Prompt for password
                 char deletePassword[20];
                 cin >> deletePassword;
                 deleteCharacter(profileName, deletePassword); // Pass the entered password

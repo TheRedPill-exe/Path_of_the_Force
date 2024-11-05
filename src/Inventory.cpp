@@ -68,7 +68,6 @@ void loadAndSortItems(const char* filePrefix, int numberOfItems, const char* sor
         char fileName[50];
         sprintf(fileName, "%s%02d.bin", filePrefix, i + 1);
         readItemFromFile(items[i], fileName);
-        cout << items[i].name << endl;
     }
 
     // Ordenar según el criterio especificado

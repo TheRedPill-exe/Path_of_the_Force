@@ -10,9 +10,11 @@ using namespace std;
 void displayCharacter(char* profileName) {
     Character characterP;
     char filePath[100];
+
     replaceSpace(profileName);
+    
     cout << "Profile name: " << profileName << endl;
-	snprintf(filePath, sizeof(filePath), "../assets/data/characters/%s.txt", profileName);
+	snprintf(filePath, sizeof(filePath), "../assets/data/characters/%s.bin", profileName);
     cout << "File path: " << filePath << endl;
     FILE* user = fopen(filePath, "rb");
 
