@@ -13,6 +13,7 @@
 using namespace std;
 
 void displayMainMenu() {
+    setlocale(LC_ALL, "");
     cout << "================== Path of the Force ==================" << endl;
     cout << "1. Create new character" << endl;
     cout << "2. Show character" << endl;
@@ -20,7 +21,8 @@ void displayMainMenu() {
     cout << "4. Delete character" << endl;
     cout << "5. View sorted items" << endl;
     cout << "6. View sorted skills" << endl;
-    cout << "7. Exit" << endl;
+    cout << "7. View ordered characters (default ones)" << endl;
+    cout << "8. Exit" << endl;
     cout << "=======================================================" << endl;
     cout << "Select an option: ";
 }
@@ -28,7 +30,9 @@ void displayMainMenu() {
 int main() {
     char profileName[50];
     bool running = true;
-
+    int sizech = 10;
+    char nameC[50] = "logo";
+    printCharac(nameC);
     while (running) {
         displayMainMenu();
         int choice;
@@ -39,6 +43,7 @@ int main() {
                 cout << "Enter the profile filename: ";
                 readString("", profileName, sizeof(profileName));
                 createCharacter(profileName);
+                clearConsole();
                 break;
             case 2:
                 int displayChoice;
@@ -49,9 +54,13 @@ int main() {
                 switch (displayChoice) {
                     case 1:
                         displayCharacter(profileName);
+                        system("pause");
+                        clearConsole();
                         break;
                     case 2:
                         displayCustom(profileName);
+                        system("pause");
+                        clearConsole();
                         break;
                     default:
                         cout << "Invalid option. Please try again." << endl;
@@ -65,7 +74,8 @@ int main() {
                 cin >> password;
                 modifyCharacter(profileName, password); // Pass the entered password
                 break;
-            
+            case 3:
+                
             case 4: {
                 cout << "Enter the name of the character to delete: ";
                 cin >> profileName;
@@ -73,6 +83,8 @@ int main() {
                 char deletePassword[20];
                 cin >> deletePassword;
                 deleteCharacter(profileName, deletePassword); // Pass the entered password
+                system("pause");
+                clearConsole();
                 break;
             }
             case 5: {
@@ -85,18 +97,28 @@ int main() {
                 switch (itemOption) {
                     case 1:
                         loadAndSortItems("item_", itemSize, "effect");
+                        system("pause");
+                        clearConsole();
                         break;
                     case 2:
                         loadAndSortItems("item_", itemSize, "rarity");
+                        system("pause");
+                        clearConsole();
                         break;
                     case 3:
                         loadAndSortItems("item_", itemSize, "name");
+                        system("pause");
+                        clearConsole();
                         break;
                     case 4:
                         loadAndSortItems("item_", itemSize, "type");
+                        system("pause");
+                        clearConsole();
                         break;
                     default:
                         loadAndSortItems("item_", itemSize, "name"); // Default to sorting by name
+                        system("pause");
+                        clearConsole();
                         break;
                 }
                 break;
@@ -112,22 +134,37 @@ int main() {
                 switch (option) {
                     case 1:
                         loadAndSortSkills("skill_", size, "level");
+                        system("pause");
+                        clearConsole();
                         break;
                     case 2:
                         loadAndSortSkills("skill_", size, "cooldown");
+                        system("pause");
+                        clearConsole();
                         break;
                     case 3:
                         loadAndSortSkills("skill_", size, "name");
+                        system("pause");
+                        clearConsole();
                         break;
                     default:
-                        loadAndSortSkills("skill_", size, "name"); 
+                        loadAndSortSkills("skill_", size, "name");
+                        system("pause");
+                        clearConsole(); 
                         break;
                 }
                 break;
             }
             case 7:
+                sizech = readInt("Enter the number of characters to sort: ", 1, 39);
+                loadAndSortCharacters(sizech, "name");
+                system("pause");
+                clearConsole();
+                break;
+            case 8:
                 cout << "Exiting the game... See you soon!" << endl;
                 running = false;
+                clearConsole();
                 break;
             default:
                 cout << "Invalid option. Please try again." << endl;

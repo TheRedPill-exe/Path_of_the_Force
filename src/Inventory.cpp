@@ -6,6 +6,71 @@
 
 using namespace std;
 
+const char* characterNames[] = {
+    "ackbar", "ashoka_tano", "boba_fett", "c-3po", "cassian_andor", "chewbacca",
+    "darth_maul", "darth_vader", "dooku", "ezra_bridger", "finiss_valorum",
+    "finn", "greez", "grievous", "han_solo", "hux", "jango_fett", "jar_jar_binks",
+    "jarvis", "jyn_erso", "kilowog", "kylo_ren", "lando_calrissian",
+    "luke_skywalker", "maul", "mon_mothma", "nute_gunray", "obi_wan_kenobi",
+    "padme_amidala", "princess_leia", "r2-d2", "rey", "sabine_wren", "snap_wexley",
+    "teebo", "thrawn", "whill", "wicket_warrick", "yoda"
+};
+
+// Función para leer personajes desde un archivo
+void readCharacterFromFile(Character& character, const char* fileName) {
+    char filePath[60];
+    snprintf(filePath, sizeof(filePath), "../assets/data/characters/%s.bin", fileName);
+    FILE* file = fopen(filePath, "rb");
+    if (file) {
+        fread(&character, sizeof(Character), 1, file);
+        fclose(file);
+    } else {
+        cout << "Error opening file: " << fileName << endl;
+    }
+}
+
+// Ordenar Characters por nombre
+void bubbleSortCharactersByName(Character* characters, int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (strcmp(characters[j].name, characters[j + 1].name) > 0) {
+                swap(characters[j], characters[j + 1]);
+            }
+        }
+    }
+}
+
+// Ordenar Characters por salud
+void bubbleSortCharactersByHealth(Character* characters, int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (characters[j].health > characters[j + 1].health) {
+                swap(characters[j], characters[j + 1]);
+            }
+        }
+    }
+}
+
+// Modifica la función loadAndSortCharacters para incluir la nueva opción de ordenación
+
+void loadAndSortCharacters( int characterCount, const char* sortBy) {
+    Character* characters = new Character[characterCount];  // Crear arreglo dinámico para personajes
+
+    for (int i = 0; i < characterCount; i++) {
+        readCharacterFromFile(characters[i], characterNames[i]);
+    }
+
+    // Ordenar según el criterio especificado
+    if (strcmp(sortBy, "name") == 0) {
+        bubbleSortCharactersByName(characters, characterCount);
+    } else if (strcmp(sortBy, "health") == 0) {
+        bubbleSortCharactersByHealth(characters, characterCount);
+    }
+
+    displayCharacters(characters, characterCount);  // Mostrar los personajes ordenados
+
+    delete[] characters;  // Liberar la memoria después de mostrar los personajes
+}
 void readItemFromFile(Item& item, const char* fileName) {
     char filePath[40];
     snprintf(filePath, sizeof(filePath), "../assets/data/items/%s", fileName);

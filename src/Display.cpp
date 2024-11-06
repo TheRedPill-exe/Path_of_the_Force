@@ -7,15 +7,38 @@
 #include <iomanip>
 using namespace std;
 
+void printCharac(char nameC[]) {
+    if (isName(nameC)) {
+        replaceSpace(nameC);
+        
+        // Construye la ruta del archivo usando el nombre del personaje
+        char filePath[100];
+        snprintf(filePath, sizeof(filePath), "../assets/ascii_art/characters/%s.txt", nameC);
+        
+        // Abre el archivo usando fopen
+        FILE* user = fopen(filePath, "r"); // Abre el archivo en modo lectura
+        if (!user) {
+            //cout << "Error: Unable to open file." << endl;
+            return;
+        }
+
+        char line[256];
+        // Lee y muestra el contenido del archivo
+        while (fgets(line, sizeof(line), user)) {
+            cout << line; // Imprime cada línea leída
+        }
+        fclose(user); // Cierra el archivo
+    }
+}
+
 void displayCharacter(char* profileName) {
     Character characterP;
     char filePath[100];
 
     replaceSpace(profileName);
-    
-    cout << "Profile name: " << profileName << endl;
 	snprintf(filePath, sizeof(filePath), "../assets/data/characters/%s.bin", profileName);
-    cout << "File path: " << filePath << endl;
+    printCharac(profileName);
+    
     FILE* user = fopen(filePath, "rb");
 
     if (user == NULL) {
@@ -126,29 +149,6 @@ void displayCustom(char* profileName) {
     }
 }
 
-void printCharac(char nameC[]) {
-    if (isName(nameC)) {
-        replaceSpace(nameC);
-        
-        // Construye la ruta del archivo usando el nombre del personaje
-        char filePath[100];
-        snprintf(filePath, sizeof(filePath), "../assets/ascii_art/characters/%s.txt", nameC);
-        
-        // Abre el archivo usando fopen
-        FILE* user = fopen(filePath, "r"); // Abre el archivo en modo lectura
-        if (!user) {
-            cout << "Error: Unable to open file." << endl;
-            return;
-        }
-
-        char line[256];
-        // Lee y muestra el contenido del archivo
-        while (fgets(line, sizeof(line), user)) {
-            cout << line; // Imprime cada línea leída
-        }
-        fclose(user); // Cierra el archivo
-    }
-}
 
 void displayItems(const Item* items, int size) {
     cout << "Items sorted:\n";
@@ -190,3 +190,49 @@ void displaySkills(const Skill* skills, int size) {
     }
 }
 
+
+void displayCharacters(const Character* characters, int size) {
+    cout << "Characters:\n";
+    cout << "--------------------------------------------------------------\n";
+    cout << "| Name                     | Species       | Faction       |\n";
+    cout << "--------------------------------------------------------------\n";
+    
+    for (int i = 0; i < size; i++) {
+        // Si el personaje tiene salud 0, se salta a la siguiente iteración
+        if (characters[i].health == 0) {
+            continue;
+        }
+
+        cout << "| " << left << setw(25) << characters[i].name 
+             << "| " << left << setw(13) << characters[i].species 
+             << "| " << left << setw(13) << characters[i].faction << " |\n";
+    }
+    
+    cout << "--------------------------------------------------------------\n";
+    cout << "Detailed Information:\n";
+    for (int i = 0; i < size; i++) {
+        // Si el personaje tiene salud 0, se salta a la siguiente iteración
+        if (characters[i].health == 0) {
+            continue;
+        }
+
+        cout << "Character " << (i + 1) << ":\n";
+        cout << " - Health: " << characters[i].health << endl;
+        cout << " - Strength: " << characters[i].strength << endl;
+        cout << " - Agility: " << characters[i].agility << endl;
+        cout << " - Intelligence: " << characters[i].intelligence << endl;
+        cout << " - Attack Power: " << characters[i].attackPower << endl;
+        cout << " - Defense: " << characters[i].defense << endl;
+        
+        cout << " - Skills:\n";
+        for (int j = 0; j < 3; j++) {
+            cout << "   * " << characters[i].skills[j].name << " (Level: " << characters[i].skills[j].level << ")\n";
+        }
+        
+        cout << " - Items:\n";
+        for (int j = 0; j < 3; j++) {
+            cout << "   * " << characters[i].items[j].name << "\n";
+        }
+        cout << "--------------------------------------------------------------\n";
+    }
+}

@@ -10,4 +10,6 @@ void bubbleSortByRarity(Item* items, int size);
 void bubbleSortByName(Item* items, int size);
 void loadAndSortItems(const char* filePrefix, int numberOfItems, const char* sortBy);
 void loadAndSortSkills(const char* filePrefix, int numberOfSkills, const char* sortBy);
+void loadAndSortCharacters(int numberOfCharacters, const char* sortBy);
+
 #endif // INVENTORY_H

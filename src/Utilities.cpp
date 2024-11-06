@@ -7,7 +7,7 @@
 #include <cctype>  // Para funciones de caracteres
 #include "Character.h"
 #include "Inventory.h"
-
+#include <cstdlib> 
 using namespace std;
 
 int readInt(const char* prompt, int min, int max) {
@@ -71,4 +71,12 @@ bool isName(char nameC[]) {
         return false;
     }
     return true; 
+} 
+
+void clearConsole() {
+    #ifdef _WIN32
+        system("CLS");  // Comando para Windows
+    #else
+        system("clear");  // Comando para Linux y macOS
+    #endif
 }
