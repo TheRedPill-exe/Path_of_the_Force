@@ -9,20 +9,6 @@
 #include "Inventory.h"
 using namespace std;
 
-enum ItemType {
-    WEAPON,
-    ARMOR,
-    POTION,
-    ACCESSORY
-};
-
-enum Rarity {
-    COMMON,
-    UNCOMMON,
-    RARE,
-    EPIC,
-    LEGENDARY
-};
 void initializeCharacterFile(char filePath[], FILE*& user) {
     user = fopen(filePath, "wb+");
 }
