@@ -4,6 +4,7 @@
 #include <fstream>
 #include <locale>
 #include <codecvt>
+#include <thread>
 #include "Utilities.h"
 #include "Character.h"
 #include "Display.h"
@@ -32,11 +33,13 @@ int main() {
     bool running = true;
     int sizech = 10;
     char nameC[50] = "logo";
+    std::thread audioThread(playAudio, "../assets/starwars.wav");
+    displayFileWithOffset("nave");
     printCharac(nameC);
     while (running) {
         displayMainMenu();
         int choice;
-        choice = readInt("", 1, 7);
+        choice = readInt("", 1, 8);
 
         switch (choice) {
             case 1:
@@ -68,20 +71,28 @@ int main() {
 
                 break;
                 cout << "Enter the name of the character to modify: ";
-                cin >> profileName;
+                readString("", profileName, sizeof(profileName));
                 cout << "Enter the password: "; // Prompt for password
                 char password[20];
-                cin >> password;
+                readString("", password, sizeof(password));
                 modifyCharacter(profileName, password); // Pass the entered password
                 break;
             case 3:
-                
+                cout << "Enter the name of the character to modify: ";
+                readString("", profileName, sizeof(profileName));
+                cout << "Enter the keyword: "; // Prompt for password
+                char keyc[20];
+                readString("", keyc, sizeof(keyc));
+                modifyCharacter(profileName, password); // Pass the entered password
+                system("pause");
+                clearConsole();
+                break;
             case 4: {
                 cout << "Enter the name of the character to delete: ";
-                cin >> profileName;
+                readString("", profileName, sizeof(profileName));
                 cout << "Enter the key: "; // Prompt for password
                 char deletePassword[20];
-                cin >> deletePassword;
+                readString("", deletePassword, sizeof(deletePassword));
                 deleteCharacter(profileName, deletePassword); // Pass the entered password
                 system("pause");
                 clearConsole();
@@ -91,7 +102,7 @@ int main() {
                 int itemSize = 20;
                 int itemOption = 0;
                 cout << "How would you like to sort the items?\n1. Effect\n2. Rarity\n3. Name\n4. Type\nSelect an option: ";
-                cin >> itemOption;
+                itemOption = readInt("", 1, 4);
                 cout << "Enter the number of items to sort: ";
                 itemSize = readInt("", 1, 50);
                 switch (itemOption) {
@@ -127,7 +138,7 @@ int main() {
                 int size = 20;
                 int option = 0;
                 cout << "How would you like to sort the skills?\n1. Level\n2. Cooldown\n3. Name\nSelect an option: ";
-                cin >> option;
+                option = readInt("", 1, 3);
                 cout << "Enter the number of skills to sort: ";
                 size = readInt("", 1, 50);
 

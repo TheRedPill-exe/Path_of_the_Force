@@ -132,20 +132,20 @@ void createCharacter(char profileName[]) {
     // Configurar habilidades del personaje
     int option;
     cout << "Type 1 to select skills or 0 to select them manually: ";
-    cin >> option;
+    option = readInt("", 0, 1);
     configureCharacterSkills(characterP, option);
     
     // Configurar objetos del personaje
     cout << "Type 1 to select items or 0 to select them manually: ";
-    cin >> option;
+    option = readInt("", 0, 1);
     configureCharacterItems(characterP, option);
 
     // Encriptar datos
     char password[10], keyword[10];
     cout << "Enter your password: ";
-    cin >> password;
+    readString("", password, sizeof(password));
     cout << "Enter a keyword: ";
-    cin >> keyword;
+    readString("", keyword, sizeof(keyword));
     encryptCharacterData(characterP, password, keyword);
 
     // Guardar y cerrar archivo

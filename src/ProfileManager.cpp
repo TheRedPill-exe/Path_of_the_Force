@@ -101,7 +101,7 @@ void modifyCharacter(char profileName[], const char key[]) {
     // Solicitar y verificar la contraseña
     char inputPassword[20];
     cout << "Enter your password: ";
-    cin >> inputPassword;
+    readString("", inputPassword, sizeof(inputPassword));
     encrypt(inputPassword, key);
     if (strcmp(inputPassword, characterP.password) != 0) {
         cout << "Incorrect password. Access denied." << endl;

@@ -7,4 +7,6 @@ void displayCustom(char* profileName);
 void displayItems(const Item* items, int size);
 void displaySkills(const Skill* skills, int size);
 void displayCharacters(const Character* characters, int size);
+void displayFileWithOffset(const char filename[]);
+void playAudio(const std::string& filename);
 #endif // DISPLAY_H

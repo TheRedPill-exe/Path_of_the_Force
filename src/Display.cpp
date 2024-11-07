@@ -5,6 +5,11 @@
 #include <cstring> // Para manejar cadenas
 #include "ProfileManager.h"
 #include <iomanip>
+#include <fstream>
+#include <thread>       // Para sleep_for
+#include <chrono>       // Para los tiempos de espera
+#include <windows.h>
+
 using namespace std;
 
 void printCharac(char nameC[]) {
@@ -99,7 +104,7 @@ void displayCustom(char* profileName) {
     // Pide la palabra clave para desencriptar
     char keyword[10];
     cout << "Enter the keyword to decrypt the character information: ";
-    cin >> keyword;
+    readString("", keyword, 10);
 
     // Desencriptar los campos de texto del personaje
     decrypt(characterP.name, keyword);
@@ -234,5 +239,69 @@ void displayCharacters(const Character* characters, int size) {
             cout << "   * " << characters[i].items[j].name << "\n";
         }
         cout << "--------------------------------------------------------------\n";
+    }
+}
+void displayFileWithOffset(const char filename[]) {
+    char filePath[60];
+    snprintf(filePath, sizeof(filePath), "../assets/ascii_art/characters/%s.txt", filename);
+    ifstream file(filePath);
+
+    if (!file.is_open()) {
+        cerr << "No se pudo abrir el archivo: " << filePath << endl;
+        return;
+    }
+
+    string line;
+    size_t max_offset = 0;
+    
+    // Determinar la longitud máxima de una línea en el archivo
+    while (getline(file, line)) {
+        if (line.length() > max_offset) {
+            max_offset = line.length();
+        }
+    }
+
+    // Reiniciar el archivo al inicio
+    file.clear();
+    file.seekg(0, ios::beg);
+
+    // Mostrar el archivo desplazando cada línea hacia la izquierda
+    for (size_t offset = 0; offset <= max_offset; ++offset) {
+        clearConsole();  // Limpiar la consola antes de mostrar el siguiente desplazamiento
+        file.clear();
+        file.seekg(0, ios::beg);
+
+        while (getline(file, line)) {
+            if (offset < line.length()) {
+                cout << line.substr(offset) << endl;
+            } else {
+                cout << endl;
+            }
+        }
+
+        // Añadir un pequeño retraso para hacer que el efecto de desplazamiento sea visible
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
+    file.close();
+}
+void playAudio(const std::string& filename) {
+    #ifdef _WIN32
+        // En Windows, usa PowerShell para reproducir el audio en segundo plano sin abrir ventana
+        std::string command = "powershell -Command (New-Object Media.SoundPlayer \"" + filename + "\").PlaySync();";
+    #elif __APPLE__
+        // En macOS, usa `afplay` en segundo plano
+        std::string command = "afplay " + filename + " &";
+    #elif __linux__
+        // En Linux, intenta `aplay` para .wav o `mpg123` para .mp3, en segundo plano
+        std::string command = "aplay " + filename + " &" + " || mpg123 " + filename + " &";
+    #else
+        std::cerr << "Sistema operativo no compatible para reproducir audio." << std::endl;
+        return;
+    #endif
+
+    // Ejecutar el comando para reproducir el audio en segundo plano
+    if (std::system(command.c_str()) != 0) {
+        std::cerr << "Error: no se pudo reproducir el archivo de audio: " << filename << std::endl;
     }
 }

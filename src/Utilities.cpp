@@ -80,3 +80,6 @@ void clearConsole() {
         system("clear");  // Comando para Linux y macOS
     #endif
 }
+
+#include <cstdlib>
+
