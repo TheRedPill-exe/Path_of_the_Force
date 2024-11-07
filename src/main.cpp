@@ -1,3 +1,14 @@
+/*
+Realizar con manejo de archivos un micro proyecto que contenga  
+definición de estructuras de registro, el cual debe ser usado para 
+Crear, guardar, borrar, actualizar, consultar y Ordenar,  
+a través de manejo de menús  y las funciones asociadas, 
+como se han visto a lo largo de los diferentes ejemplos presentados,  
+los archivos pueden ser de texto o binarios; y con cualquier librería para este tipo de programas. 
+
+Adicionar en un archivo de texto: explicación del manejo y el 
+tema desarrollado, además de permitir o NO, que otros vean su código y lo mejoren. */
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -10,6 +21,7 @@
 #include "Display.h"
 #include "Inventory.h"
 #include "ProfileManager.h"
+#include "Battlesystem.h"
 
 using namespace std;
 
@@ -22,8 +34,9 @@ void displayMainMenu() {
     cout << "4. Delete character" << endl;
     cout << "5. View sorted items" << endl;
     cout << "6. View sorted skills" << endl;
-    cout << "7. View ordered characters (default ones)" << endl;
-    cout << "8. Exit" << endl;
+    cout << "7. View ordered characters (default ones) " << endl;
+    cout << "8. Start battle" << endl;
+    cout << "9. Exit" << endl;
     cout << "=======================================================" << endl;
     cout << "Select an option: ";
 }
@@ -39,7 +52,7 @@ int main() {
     while (running) {
         displayMainMenu();
         int choice;
-        choice = readInt("", 1, 8);
+        choice = readInt("", 1, 9);
 
         switch (choice) {
             case 1:
@@ -173,6 +186,20 @@ int main() {
                 clearConsole();
                 break;
             case 8:
+                cout << "Enter the name of the first character (you): ";
+                readString("", profileName, sizeof(profileName));
+                Character character1;
+                replaceSpace(profileName);
+                readCharacterFromFile(character1, profileName);
+                cout << "Enter the name of the second character (AI): ";
+                readString("", profileName, sizeof(profileName));
+                Character character2;
+                replaceSpace(profileName);
+                readCharacterFromFile(character2, profileName);
+                cout << "Starting battle between characters!" << endl;
+                startBattle(character1.name, character2.name);  // Iniciar la batalla
+                break;
+            case 9:
                 cout << "Exiting the game... See you soon!" << endl;
                 running = false;
                 clearConsole();

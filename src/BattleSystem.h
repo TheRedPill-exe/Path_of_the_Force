@@ -1,35 +1,27 @@
 #ifndef BATTLESYSTEM_H
 #define BATTLESYSTEM_H
 
-#include <string>
-
-class Character {
-public:
-    std::string name;
+// Estructura básica para los personajes de pelea
+struct FightCharacter {
+    char name[30];
     int health;
-    int attackPower;
+    int attack;
     int defense;
-
-    Character(std::string name, int health, int attackPower, int defense)
-        : name(name), health(health), attackPower(attackPower), defense(defense) {}
 };
 
-class Battle {
-private:
-    Character* character1;
-    Character* character2;
-    int turn;
+// Función para cargar un personaje de pelea desde un archivo
+bool loadFightCharacter(FightCharacter& character, const char* name);
 
-public:
-    Battle(Character* character1, Character* character2, int turn = 0)
-        : character1(character1), character2(character2), turn(turn) {}
+// Función para realizar el ataque del personaje
+int attack(FightCharacter& attacker, FightCharacter& defender);
 
-    void startBattle();
-    void attack(Character& attacker, Character& defender);
-    void calculateDamage(Character& attacker, Character& defender, int& damage);
-    void displayBattleStatus();
-};
+// Función para mostrar el estado de la batalla
+void showBattleStatus(const FightCharacter& p1, const FightCharacter& p2);
 
-void startBattle(Character* character1, Character* character2);
+// Función principal para manejar la pelea
+void battle(FightCharacter& p1, FightCharacter& p2);
+
+// Función para iniciar la batalla entre dos personajes
+void startBattle(const char* character1Name, const char* character2Name);
 
 #endif // BATTLESYSTEM_H

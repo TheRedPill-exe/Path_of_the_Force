@@ -264,7 +264,6 @@ void displayFileWithOffset(const char filename[]) {
     // Reiniciar el archivo al inicio
     file.clear();
     file.seekg(0, ios::beg);
-
     // Mostrar el archivo desplazando cada línea hacia la izquierda
     for (size_t offset = 0; offset <= max_offset; ++offset) {
         clearConsole();  // Limpiar la consola antes de mostrar el siguiente desplazamiento
@@ -280,7 +279,7 @@ void displayFileWithOffset(const char filename[]) {
         }
 
         // Añadir un pequeño retraso para hacer que el efecto de desplazamiento sea visible
-        this_thread::sleep_for(chrono::milliseconds(100));
+        this_thread::sleep_for(chrono::milliseconds(90-offset*2));
     }
 
     file.close();
