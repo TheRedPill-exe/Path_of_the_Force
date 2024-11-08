@@ -99,7 +99,7 @@ Path_of_the_Force/
 ```
 ## 🔒 Encriptación
 
-Cada perfil de usuario está protegido con encriptación César, asegurando la privacidad de los datos almacenados. Los datos se guardan en archivos binarios en la carpeta `assets/data`.
+Cada perfil de usuario está protegido con encriptación César, asegurando la privacidad de los datos almacenados. Los datos se guardan en archivos binarios en la carpeta `users/`.
 
 ---
 
