@@ -58,7 +58,7 @@ Los jugadores pueden crear personajes seleccionando diferentes atributos. Cada p
 Cada jugador puede crear un perfil protegido por contraseña. Los datos de cada perfil están encriptados para mayor seguridad.
 
 <!-- GIF mostrando el acceso mediante contraseña y creación de perfil -->
-![Acceso de Perfil](https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/decrypt.gif)
+![encrypt](https://github.com/user-attachments/assets/b050441d-7e1a-4c99-94b4-18b5b2877cca)
 
 ### 🔹 Misiones y Recompensas (en desarrollo)
 Explora misiones únicas que recompensan al jugador con experiencia y objetos especiales para mejorar sus personajes.
