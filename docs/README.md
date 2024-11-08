@@ -18,8 +18,10 @@ g++ -o Path_of_the_Force Character.cpp Display.cpp main.cpp Utilities.cpp Profil
 ## 🚀 Características
 
 - **Sistema de creación y gestión de personajes**
+- **Gran cantidad de personajes, habilidades e items!**
+- **Ordenamiento y listado de items, habilidades y personajes**
 - **Misiones y desafíos aleatorios** (en desarrollo)
-- **Combate basado en atributos de personaje**
+- **Combate báscio de personaje**
 - **Perfiles con seguridad mediante encriptación básica**
 - **Visualización en consola con arte ASCII** (en desarrollo)
 
@@ -27,10 +29,7 @@ g++ -o Path_of_the_Force Character.cpp Display.cpp main.cpp Utilities.cpp Profil
 
 ## 📜 Descripción General
 
-**Path of the Force** transporta al jugador a una galaxia lejana en una experiencia RPG inspirada en Star Wars. Con funcionalidades de gestión de datos en C++ y un sistema de combate por turnos, el jugador puede personalizar personajes, aceptar misiones y mejorar su equipo.
-
-<!-- GIF que muestre el menú principal del juego  -->
-
+**Path of the Force** transporta al jugador a una galaxia lejana en una experiencia inspirada en Star Wars. Con funcionalidades de gestión de datos en C++ y un sistema de visualización de datos optima y amena, el jugador puede personalizar personajes, crearlos, modificarlos y listarlos.
 
 ---
 
@@ -45,7 +44,7 @@ g++ -o Path_of_the_Force Character.cpp Display.cpp main.cpp Utilities.cpp Profil
 ## 🧙‍♂️ Funcionalidades
 
 ### 🔹 Combate por Turnos 
-El sistema de combate está basado en atributos de personajes, con turnos que permiten planear estrategias en base a la salud, fuerza y habilidades. (en desarrollo)
+El sistema de combate está basado en ataque y defensa de pesonajes en una versión beta, con turnos que en base a la salud, fuerza y habilidades. (en desarrollo)
 
 <!-- Imagen mostrando un combate entre dos personajes -->
 ![Combate](https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/star-wars-star-wars-the-rise-of-skywalker-movie-poster-poster-movie-characters-hd-wallpaper-preview.jpg)
@@ -82,7 +81,6 @@ Path_of_the_Force/
 │
 ├── src/
 │   ├── main.cpp             # Punto de entrada del programa
-│   ├── Game.cpp/h           # Lógica principal del juego
 │   ├── Character.cpp/h      # Gestión de los personajes y atributos
 │   ├── BattleSystem.cpp/h   # Sistema de combate
 │   ├── ProfileManager.cpp/h # Manejo de perfiles y encriptación
