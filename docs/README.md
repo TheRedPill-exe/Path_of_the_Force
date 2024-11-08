@@ -48,7 +48,11 @@ El sistema de combate está basado en atributos de personajes, con turnos que pe
 Los jugadores pueden crear personajes seleccionando diferentes atributos. Cada personaje puede pertenecer a facciones como Jedi, Sith, o Cazarrecompensas, y cuenta con atributos únicos.
 
 <!-- Imagen de ejemplo del menú de creación de personajes -->
-![Creación de Personajes](assets/images/character_creation.png)
+<p align="center">
+  <img src="https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/Menu.png" width="30%" />
+  <img src="https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/items.png" width="30%" />
+  <img src="https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/skills.png" width="30%" />
+</p>
 
 ### 🔹 Sistema de Perfiles y Seguridad
 Cada jugador puede crear un perfil protegido por contraseña. Los datos de cada perfil están encriptados para mayor seguridad.
