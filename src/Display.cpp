@@ -304,3 +304,4 @@ void playAudio(const std::string& filename) {
         std::cerr << "Error: no se pudo reproducir el archivo de audio: " << filename << std::endl;
     }
 }
+

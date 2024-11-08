@@ -27,29 +27,30 @@ using namespace std;
 
 void displayMainMenu() {
     setlocale(LC_ALL, "");
-    cout << "================== Path of the Force ==================" << endl;
-    cout << "1. Create new character" << endl;
-    cout << "2. Show character" << endl;
-    cout << "3. Modify character" << endl;
-    cout << "4. Delete character" << endl;
-    cout << "5. View sorted items" << endl;
-    cout << "6. View sorted skills" << endl;
-    cout << "7. View ordered characters (default ones) " << endl;
-    cout << "8. Start battle" << endl;
-    cout << "9. Exit" << endl;
-    cout << "=======================================================" << endl;
+    cout << "========================== Path of the Force ==========================" << endl;
+    cout << "   1. Create new character" << endl;
+    cout << "   2. Show character" << endl;
+    cout << "   3. Modify character" << endl;
+    cout << "   4. Delete character" << endl;
+    cout << "   5. View sorted items" << endl;
+    cout << "   6. View sorted skills" << endl;
+    cout << "   7. View ordered characters (default ones) " << endl;
+    cout << "   8. Start battle" << endl;
+    cout << "   9. Exit" << endl;
+    cout << "=======================================================================" << endl;
     cout << "Select an option: ";
 }
 
 int main() {
+    int battleNum = 1;
     char profileName[50];
     bool running = true;
     int sizech = 10;
     char nameC[50] = "logo";
-    std::thread audioThread(playAudio, "../assets/starwars.wav");
+    //std::thread audioThread(playAudio, "../assets/starwars.wav");
     displayFileWithOffset("nave");
-    printCharac(nameC);
     while (running) {
+        printCharac(nameC);
         displayMainMenu();
         int choice;
         choice = readInt("", 1, 9);
@@ -65,7 +66,7 @@ int main() {
                 int displayChoice;
                 cout << "Enter the option to show: \n1 For default characters.\n2 For custom characters:\n";
                 displayChoice = readInt("", 1, 2);
-                cout << "Enter the name of the character to display: ";
+                cout << "Enter the name of the character (or profile) to display: ";
                 readString("", profileName, sizeof(profileName));
                 switch (displayChoice) {
                     case 1:
@@ -197,7 +198,10 @@ int main() {
                 replaceSpace(profileName);
                 readCharacterFromFile(character2, profileName);
                 cout << "Starting battle between characters!" << endl;
-                startBattle(character1.name, character2.name);  // Iniciar la batalla
+                startBattle(character1.name, character2.name, battleNum);  // Iniciar la batalla
+                battleNum++;
+                system("pause");
+                clearConsole();
                 break;
             case 9:
                 cout << "Exiting the game... See you soon!" << endl;
