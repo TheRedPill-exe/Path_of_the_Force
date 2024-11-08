@@ -12,10 +12,10 @@
 ## 🚀 Características
 
 - **Sistema de creación y gestión de personajes**
-- **Misiones y desafíos aleatorios**
+- **Misiones y desafíos aleatorios** (en desarrollo)
 - **Combate basado en atributos de personaje**
 - **Perfiles con seguridad mediante encriptación básica**
-- **Visualización en consola con arte ASCII**
+- **Visualización en consola con arte ASCII** (en desarrollo)
 
 ---
 
@@ -28,7 +28,7 @@
 
 ---
 
-## 🕹️ Instrucciones para Jugar
+## 🕹️ Instrucciones para Usar
 
 1. **Clonar el repositorio**  
    ```bash
@@ -38,8 +38,8 @@
 
 ## 🧙‍♂️ Funcionalidades
 
-### 🔹 Combate por Turnos
-El sistema de combate está basado en atributos de personajes, con turnos que permiten planear estrategias en base a la salud, fuerza y habilidades.
+### 🔹 Combate por Turnos 
+El sistema de combate está basado en atributos de personajes, con turnos que permiten planear estrategias en base a la salud, fuerza y habilidades. (en desarrollo)
 
 <!-- Imagen mostrando un combate entre dos personajes -->
 ![Combate](https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/star-wars-star-wars-the-rise-of-skywalker-movie-poster-poster-movie-characters-hd-wallpaper-preview.jpg)
