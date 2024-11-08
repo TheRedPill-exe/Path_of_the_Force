@@ -7,6 +7,11 @@
 
 **Path of the Force** es un juego de rol basado en consola que permite a los jugadores explorar el universo de *Star Wars* con sus propios personajes, enfrentarse en combates y vivir aventuras a través de perfiles personalizados.
 
+```plaintext
+To create the .exe on your terminal run (on the src dir):
+g++ -o Path_of_the_Force Character.cpp Display.cpp main.cpp Utilities.cpp ProfileManager.cpp Inventory.cpp BattleSystem.cpp
+
+```
 --- 
 
 ## 🚀 Características
