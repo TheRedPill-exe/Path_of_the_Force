@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 #include "Character.h"
+#include "Utilities.h"
+
 using namespace std;
 
 #include <cstring>
@@ -66,8 +68,7 @@ void modifyCharacterSkills(Character& characterP) {
 
 void modifyCharacterItems(Character& characterP) {
     int option;
-    cout << "\nType 1 to select items from list or 0 to enter manually: ";
-    cin >> option;
+    option = readInt("\nType 1 to select items from list or 0 to enter manually: ", 0, 1);
     configureCharacterItems(characterP, option);
     
 }
@@ -174,8 +175,7 @@ bool deleteCharacter(const char* fileName, const char* key) {
 
     // Solicitar la contraseña al usuario
     char inputPassword[20];
-    cout << "Enter your password: ";
-    cin >> inputPassword;
+    readString("Enter your password: ", inputPassword, sizeof(inputPassword));
 
     // Encriptar la contraseña ingresada
     encrypt(inputPassword, key);

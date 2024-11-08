@@ -7,11 +7,8 @@
 #include "Utilities.h"
 #include "ProfileManager.h"
 #include "Inventory.h"
-using namespace std;
 
-void initializeCharacterFile(char filePath[], FILE*& user) {
-    user = fopen(filePath, "wb+");
-}
+using namespace std;
 
 void readCharacterAttributes(Character& characterP) {
     readString("Enter your character name: ", characterP.name, sizeof(characterP.name));
@@ -41,6 +38,7 @@ void configureCharacterSkills(Character& characterP, int option) {
             characterP.skills[i] = skill;
             fclose(skillFile);
         }
+
     } else {
         for (int i = 0; i < 3; i++) {
             Skill skill;
@@ -107,31 +105,23 @@ void createCharacter(char profileName[]) {
     Character characterP;
     char filePath[30];
     snprintf(filePath, sizeof(filePath), "../users/%s", profileName);
-    FILE* user;
     
-    // Inicializar archivo
-    initializeCharacterFile(filePath, user);
-    
-    // Leer atributos del personaje
+    FILE* user = fopen(filePath, "wb+");
+
     readCharacterAttributes(characterP);
     
-    // Configurar habilidades del personaje
     int option;
-    cout << "Type 1 to select skills or 0 to select them manually: ";
-    option = readInt("", 0, 1);
+    option = readInt("Type 1 to select skills or 0 to select them manually: ", 0, 1);
     configureCharacterSkills(characterP, option);
     
     // Configurar objetos del personaje
-    cout << "Type 1 to select items or 0 to select them manually: ";
-    option = readInt("", 0, 1);
+    option = readInt("Type 1 to select items or 0 to select them manually:", 0, 1);
     configureCharacterItems(characterP, option);
 
     // Encriptar datos
     char password[10], keyword[10];
-    cout << "Enter your password: ";
-    readString("", password, sizeof(password));
-    cout << "Enter a keyword: ";
-    readString("", keyword, sizeof(keyword));
+    readString("Enter your password: ", password, sizeof(password));
+    readString("Enter a keyword: ", keyword, sizeof(keyword));
     encryptCharacterData(characterP, password, keyword);
 
     // Guardar y cerrar archivo

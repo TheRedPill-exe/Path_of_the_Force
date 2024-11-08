@@ -17,18 +17,14 @@ bool loadFightCharacter(Character& character, const char* name) {
 
     // Crear la ruta al archivo del personaje
     char filePath[100];
-    snprintf(filePath, sizeof(filePath), "../assets/ascii_art/characters/%s.txt", nameBuffer);
+    snprintf(filePath, sizeof(filePath), "../assets/data/characters/%s.bin", nameBuffer);
     
-    ifstream file(filePath);
+    FILE *file = fopen(filePath, "rb");
     if (!file) {
         cout << "Error: Could not load character " << name << endl;
         return false;
     }
-
-    strcpy(character.name, nameBuffer);
-    character.health = 100;
-    character.attackPower = 20;
-    character.defense = 10;
+    fread(&character, sizeof(Character), 1, file);
     
     return true;
 }

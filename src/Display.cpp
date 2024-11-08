@@ -7,8 +7,7 @@
 #include <iomanip>
 #include <fstream>
 #include <thread>       // Para sleep_for
-#include <chrono>       // Para los tiempos de espera
-#include <windows.h>
+#include <chrono>       
 
 using namespace std;
 
@@ -157,15 +156,15 @@ void displayCustom(char* profileName) {
 
 void displayItems(const Item* items, int size) {
     cout << "Items sorted:\n";
-    cout << "--------------------------------------------------------------\n";
-    cout << "| Name                     | Type          | Effect | Rarity  |\n";
-    cout << "--------------------------------------------------------------\n";
+    cout << "-----------------------------------------------------------------\n";
+    cout << "| Name                     | Type          | Effect | Rarity     |\n";
+    cout << "-----------------------------------------------------------------\n";
     
     for (int i = 0; i < size; i++) {
-        cout << "| " << left << setw(25) << items[i].name 
-             << "| " << left << setw(13) << items[i].type   
-             << "| " << right << setw(6) << items[i].effect 
-             << "| " << left << setw(9) << items[i].rarity << " |\n";
+        cout << "| " << left << setw(27) << items[i].name 
+             << "| " << left << setw(15) << items[i].type   
+             << "| " << right << setw(7) << items[i].effect 
+             << "| " << left << setw(11) << items[i].rarity << " |\n";
     }
     
     cout << "-------------------------------------------------------------\n";
@@ -177,15 +176,15 @@ void displayItems(const Item* items, int size) {
 
 void displaySkills(const Skill* skills, int size) {
     cout << "Skills:\n";
-    cout << "----------------------------------------------------------\n";
-    cout << "| Name                     | Level | Cooldown | Mana Cost |\n";
-    cout << "----------------------------------------------------------\n";
+    cout << "-------------------------------------------------------------\n";
+    cout << "| Name                     | Level | Cooldown | Mana Cost    |\n";
+    cout << "-------------------------------------------------------------\n";
     
     for (int i = 0; i < size; i++) {
-        cout << "| " << left << setw(25) << skills[i].name 
-             << "| " << right << setw(6) << skills[i].level 
-             << "| " << right << setw(9) << skills[i].cooldown 
-             << "| " << right << setw(10) << skills[i].manaCost << " |\n";
+        cout << "| " << left << setw(27) << skills[i].name 
+             << "| " << right << setw(8) << skills[i].level 
+             << "| " << right << setw(11) << skills[i].cooldown 
+             << "| " << right << setw(12) << skills[i].manaCost << " |\n";
     }
     
     cout << "----------------------------------------------------------\n";
@@ -198,9 +197,9 @@ void displaySkills(const Skill* skills, int size) {
 
 void displayCharacters(const Character* characters, int size) {
     cout << "Characters:\n";
-    cout << "--------------------------------------------------------------\n";
-    cout << "| Name                     | Species       | Faction       |\n";
-    cout << "--------------------------------------------------------------\n";
+    cout << "----------------------------------------------------------------\n";
+    cout << "| Name                     | Species       | Faction            |\n";
+    cout << "----------------------------------------------------------------\n";
     
     for (int i = 0; i < size; i++) {
         // Si el personaje tiene salud 0, se salta a la siguiente iteración
@@ -208,9 +207,9 @@ void displayCharacters(const Character* characters, int size) {
             continue;
         }
 
-        cout << "| " << left << setw(25) << characters[i].name 
-             << "| " << left << setw(13) << characters[i].species 
-             << "| " << left << setw(13) << characters[i].faction << " |\n";
+        cout << "| " << left << setw(27) << characters[i].name 
+             << "| " << left << setw(15) << characters[i].species 
+             << "| " << left << setw(15) << characters[i].faction << " |\n";
     }
     
     cout << "--------------------------------------------------------------\n";
@@ -222,6 +221,7 @@ void displayCharacters(const Character* characters, int size) {
         }
 
         cout << "Character " << (i + 1) << ":\n";
+        cout << " - Name: " << characters[i].name << endl;
         cout << " - Health: " << characters[i].health << endl;
         cout << " - Strength: " << characters[i].strength << endl;
         cout << " - Agility: " << characters[i].agility << endl;
@@ -241,9 +241,11 @@ void displayCharacters(const Character* characters, int size) {
         cout << "--------------------------------------------------------------\n";
     }
 }
+
 void displayFileWithOffset(const char filename[]) {
     char filePath[60];
     snprintf(filePath, sizeof(filePath), "../assets/ascii_art/characters/%s.txt", filename);
+
     ifstream file(filePath);
 
     if (!file.is_open()) {
@@ -284,24 +286,24 @@ void displayFileWithOffset(const char filename[]) {
 
     file.close();
 }
-void playAudio(const std::string& filename) {
+void playAudio(const string& filename) {
     #ifdef _WIN32
         // En Windows, usa PowerShell para reproducir el audio en segundo plano sin abrir ventana
-        std::string command = "powershell -Command (New-Object Media.SoundPlayer \"" + filename + "\").PlaySync();";
+        string command = "powershell -Command (New-Object Media.SoundPlayer \"" + filename + "\").PlaySync();";
     #elif __APPLE__
         // En macOS, usa `afplay` en segundo plano
-        std::string command = "afplay " + filename + " &";
+        string command = "afplay " + filename + " &";
     #elif __linux__
         // En Linux, intenta `aplay` para .wav o `mpg123` para .mp3, en segundo plano
-        std::string command = "aplay " + filename + " &" + " || mpg123 " + filename + " &";
+        string command = "aplay " + filename + " &" + " || mpg123 " + filename + " &";
     #else
-        std::cerr << "Sistema operativo no compatible para reproducir audio." << std::endl;
+        cerr << "Sistema operativo no compatible para reproducir audio." << std::endl;
         return;
     #endif
 
     // Ejecutar el comando para reproducir el audio en segundo plano
-    if (std::system(command.c_str()) != 0) {
-        std::cerr << "Error: no se pudo reproducir el archivo de audio: " << filename << std::endl;
+    if (system(command.c_str()) != 0) {
+        cerr << "Error: no se pudo reproducir el archivo de audio: " << filename << std::endl;
     }
 }
 
