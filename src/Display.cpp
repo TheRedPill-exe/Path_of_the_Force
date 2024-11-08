@@ -156,9 +156,9 @@ void displayCustom(char* profileName) {
 
 void displayItems(const Item* items, int size) {
     cout << "Items sorted:\n";
-    cout << "-----------------------------------------------------------------\n";
-    cout << "| Name                     | Type          | Effect | Rarity     |\n";
-    cout << "-----------------------------------------------------------------\n";
+    cout << "----------------------------------------------------------------------\n";
+    cout << "| Name                       | Type           | Effect | Rarity       |\n";
+    cout << "----------------------------------------------------------------------\n";
     
     for (int i = 0; i < size; i++) {
         cout << "| " << left << setw(27) << items[i].name 
@@ -167,7 +167,7 @@ void displayItems(const Item* items, int size) {
              << "| " << left << setw(11) << items[i].rarity << " |\n";
     }
     
-    cout << "-------------------------------------------------------------\n";
+    cout << "---------------------------------------------------------------------\n";
     cout << "Descriptions:\n";
     for (int i = 0; i < size; i++) {
         cout << "Item " << (i + 1) << ": " << items[i].description << endl;
@@ -176,9 +176,9 @@ void displayItems(const Item* items, int size) {
 
 void displaySkills(const Skill* skills, int size) {
     cout << "Skills:\n";
-    cout << "-------------------------------------------------------------\n";
-    cout << "| Name                     | Level | Cooldown | Mana Cost    |\n";
-    cout << "-------------------------------------------------------------\n";
+    cout << "-------------------------------------------------------------------\n";
+    cout << "| Name                       | Level   | Cooldown   | Mana Cost    |\n";
+    cout << "-------------------------------------------------------------------\n";
     
     for (int i = 0; i < size; i++) {
         cout << "| " << left << setw(27) << skills[i].name 
@@ -187,7 +187,7 @@ void displaySkills(const Skill* skills, int size) {
              << "| " << right << setw(12) << skills[i].manaCost << " |\n";
     }
     
-    cout << "----------------------------------------------------------\n";
+    cout << "-------------------------------------------------------------------\n";
     cout << "Descriptions:\n";
     for (int i = 0; i < size; i++) {
         cout << "Skill " << (i + 1) << ": " << skills[i].description << endl;
