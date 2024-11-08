@@ -305,7 +305,93 @@ int main() {
 
              
     };
+    Character charactes2[8] = {
+    
+    {"Kilowog", "Alien", "Green Lantern Corps", 85, 70, 95, 60, 90, 75,
+    {{"Power Ring", "Harnesses the power of will", 1, 30, 15},
+     {"Strength", "Extremely strong and durable", 1, 0, 0},
+     {"Combat Training", "Highly trained in combat", 1, 5, 10}},
+    {{"Power Ring", "Weapon", 15, "Legendary", "A Green Lantern's ring"},
+     {"Armor", "Armor", 10, "Rare", "Protective battle armor"},
+     {"Energy Shield", "Defense", 15, "Epic", "Protective energy barrier"}},
+     "GreenLantern"},
 
+    {"Lando Calrissian", "Human", "Rebel Alliance", 80, 65, 75, 70, 85, 60,
+        {{"Charm", "Persuasive and charming", 1, 0, 0},
+        {"Blaster Proficiency", "Skilled with a blaster", 1, 10, 5},
+        {"Piloting", "Skilled pilot", 1, 0, 0}},
+        {{"Blaster", "Weapon", 7, "Uncommon", "A reliable blaster"},
+        {"Cape", "Clothing", 1, "Common", "Stylish and iconic"},
+        {"Medpack", "Healing", 20, "Common", "Restores health"}},
+        "SmoothOperator"},
+
+    {"Sabine Wren", "Human", "Mandalorian", 90, 80, 85, 65, 75, 70,
+        {{"Explosives", "Expert in explosives", 1, 20, 10},
+        {"Combat", "Skilled in combat and strategy", 1, 5, 10},
+        {"Artistry", "Creative and resourceful", 1, 0, 0}},
+        {{"Blaster", "Weapon", 8, "Rare", "A Mandalorian blaster"},
+        {"Armor", "Armor", 10, "Epic", "Mandalorian battle armor"},
+        {"Medpack", "Healing", 20, "Common", "Restores health"}},
+        "MandoArtist"},
+
+    {"Teebo", "Ewok", "Ewok Tribe", 70, 40, 55, 60, 65, 35,
+        {{"Stealth", "Moves quietly and unseen", 1, 5, 0},
+        {"Spear Mastery", "Skilled with a spear", 1, 8, 5},
+        {"Camouflage", "Blends into surroundings", 1, 0, 0}},
+        {{"Spear", "Weapon", 5, "Common", "A tribal spear"},
+        {"Tribal Armor", "Armor", 3, "Uncommon", "Basic protective gear"},
+        {"Medicinal Herbs", "Healing", 10, "Uncommon", "Restores health"}},
+        "EwokHunter"},
+
+    {"Thrawn", "Chiss", "Galactic Empire", 95, 80, 90, 85, 100, 70,
+        {{"Strategy", "Master strategist", 1, 0, 0},
+        {"Tactics", "Expert in battlefield tactics", 1, 0, 0},
+        {"Hand-to-Hand Combat", "Skilled in close combat", 1, 5, 10}},
+        {{"Blaster", "Weapon", 8, "Uncommon", "Standard issue blaster"},
+        {"Military Uniform", "Clothing", 0, "Common", "Imperial uniform"},
+        {"Holocron", "Knowledge", 0, "Legendary", "Contains strategic insights"}},
+        "GrandAdmiral"},
+
+    {"Cassian Andor", "Human", "Rebel Alliance", 85, 75, 80, 65, 70, 60,
+        {{"Espionage", "Skilled in covert operations", 1, 10, 5},
+        {"Marksmanship", "Expert with ranged weapons", 1, 10, 5},
+        {"Leadership", "Can lead small teams", 1, 0, 0}},
+        {{"Blaster", "Weapon", 8, "Uncommon", "A reliable blaster"},
+        {"Disguise", "Utility", 0, "Common", "For undercover missions"},
+        {"Medpack", "Healing", 20, "Common", "Restores health"}},
+        "SpyMaster"},
+
+    {"Ezra Bridger", "Human", "Jedi", 80, 65, 85, 70, 75, 55,
+        {{"Force Push", "Pushes enemies with the Force", 1, 10, 5},
+        {"Lightsaber Combat", "Skilled in lightsaber battles", 1, 5, 10},
+        {"Animal Bond", "Can communicate with animals", 1, 0, 0}},
+        {{"Lightsaber", "Weapon", 10, "Rare", "A Jedi's weapon"},
+        {"Holocron", "Knowledge", 0, "Uncommon", "Contains Jedi knowledge"},
+        {"Medpack", "Healing", 20, "Common", "Restores health"}},
+        "YoungJedi"},
+
+    {"Jyn Erso", "Human", "Rebel Alliance", 80, 70, 75, 65, 60, 50,
+        {{"Combat Training", "Skilled in combat and tactics", 1, 5, 10},
+        {"Stealth", "Moves quietly and undetected", 1, 5, 5},
+        {"Leadership", "Leads rebel missions", 1, 0, 0}},
+        {{"Blaster", "Weapon", 7, "Uncommon", "A reliable blaster"},
+        {"Armor", "Armor", 5, "Common", "Protective gear"},
+        {"Medpack", "Healing", 20, "Common", "Restores health"}},
+        "RogueLeader"}
+        };
+
+
+    const char* fileNames2[8] = 
+    {
+        "../assets/data/characters/kilowog.bin",
+        "../assets/data/characters/lando_calrissian.bin",
+        "../assets/data/characters/sabine_wren.bin",
+        "../assets/data/characters/teebo.bin",
+        "../assets/data/characters/thrawn.bin",
+        "../assets/data/characters/cassian_andor.bin",
+        "../assets/data/characters/ezra_bridger.bin",
+        "../assets/data/characters/jyn_erso.bin"
+    };
     const char* fileNames[40] = {
     "../assets/data/characters/luke_skywalker.bin",
     "../assets/data/characters/darth_vader.bin",
@@ -354,7 +440,7 @@ int main() {
 
 
     for (int i = 0; i < 40; i++) {
-        saveCharacterToFile(characters[i], fileNames[i]);
+        saveCharacterToFile(charactes2[i], fileNames2[i]);
     }
 
     return 0;

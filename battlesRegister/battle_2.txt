@@ -1,0 +1,16 @@
+Battle between Darth Vader and Luke Skywalker
+
+--- Turn 1 ---
+Darth Vader's health: 100, Luke Skywalker's health: 100
+Darth Vader attacks Luke Skywalker and deals 35 damage!
+Luke Skywalker attacks Darth Vader and deals 15 damage!
+
+--- Turn 2 ---
+Darth Vader's health: 85, Luke Skywalker's health: 65
+Darth Vader attacks Luke Skywalker and deals 35 damage!
+Luke Skywalker attacks Darth Vader and deals 15 damage!
+
+--- Turn 3 ---
+Darth Vader's health: 70, Luke Skywalker's health: 30
+Darth Vader attacks Luke Skywalker and deals 35 damage!
+Luke Skywalker is defeated!

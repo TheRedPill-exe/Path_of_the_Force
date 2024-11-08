@@ -6,4 +6,5 @@ void readString(const char* prompt, char* buffer, size_t size);
 bool isName(char nameC[]);
 void replaceSpace(char str[]);
 void clearConsole();
+bool exists(const char* filename);
 #endif // UTILITIES_H

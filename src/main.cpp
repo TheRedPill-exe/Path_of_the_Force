@@ -43,7 +43,9 @@ void displayMainMenu() {
 
 int main() {
     int battleNum = 1;
+    bool isProfile;
     char profileName[50];
+    char profileName2[50];
     bool running = true;
     int sizech = 10;
     char nameC[50] = "logo";
@@ -59,6 +61,13 @@ int main() {
             case 1:
                 cout << "Enter the profile filename: ";
                 readString("", profileName, sizeof(profileName));
+                isProfile = exists(profileName);
+                if (isProfile) {
+                    cout << "Profile already exists. Please choose another name." << endl;
+                    system("pause");
+                    clearConsole();
+                    break;
+                }
                 createCharacter(profileName);
                 system("pause");
                 clearConsole();
@@ -188,18 +197,16 @@ int main() {
                 clearConsole();
                 break;
             case 8:
-                cout << "Enter the name of the first character (you): ";
-                readString("", profileName, sizeof(profileName));
+                readString("Enter the name of the first character (you): ", profileName, sizeof(profileName));
                 Character character1;
                 replaceSpace(profileName);
                 readCharacterFromFile(character1, profileName);
-                cout << "Enter the name of the second character (AI): ";
-                readString("", profileName, sizeof(profileName));
+                readString("Enter the name of the second character (AI): ", profileName2, sizeof(profileName2));
                 Character character2;
-                replaceSpace(profileName);
-                readCharacterFromFile(character2, profileName);
+                replaceSpace(profileName2);
+                readCharacterFromFile(character2, profileName2);
                 cout << "Starting battle between characters!" << endl;
-                startBattle(character1.name, character2.name, battleNum);  // Iniciar la batalla
+                startBattle(profileName, profileName2, battleNum);  // Iniciar la batalla
                 battleNum++;
                 system("pause");
                 clearConsole();

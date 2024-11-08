@@ -1,31 +1,12 @@
-Battle between Darth_Vader and Luke_Skywalker
+Battle between Ezra Bridger and Darth Vader
 
 --- Turn 1 ---
-Darth_Vader's health: 100, Luke_Skywalker's health: 100
-Darth_Vader attacks Luke_Skywalker and deals 35 damage!
-Luke_Skywalker attacks Darth_Vader and deals 15 damage!
+Ezra Bridger's health: 80, Darth Vader's health: 100
+Ezra Bridger attacks Darth Vader and deals 5 damage!
+Darth Vader attacks Ezra Bridger and deals 40 damage!
 
 --- Turn 2 ---
-Darth_Vader's health: 85, Luke_Skywalker's health: 65
-Darth_Vader defends, boosting defense temporarily!
-Luke_Skywalker attacks Darth_Vader and deals 10 damage!
-
---- Turn 3 ---
-Darth_Vader's health: 75, Luke_Skywalker's health: 65
-Darth_Vader defends, boosting defense temporarily!
-Luke_Skywalker attacks Darth_Vader and deals 10 damage!
-
---- Turn 4 ---
-Darth_Vader's health: 65, Luke_Skywalker's health: 65
-Darth_Vader defends, boosting defense temporarily!
-Luke_Skywalker attacks Darth_Vader and deals 10 damage!
-
---- Turn 5 ---
-Darth_Vader's health: 55, Luke_Skywalker's health: 65
-Darth_Vader attacks Luke_Skywalker and deals 35 damage!
-Luke_Skywalker attacks Darth_Vader and deals 15 damage!
-
---- Turn 6 ---
-Darth_Vader's health: 40, Luke_Skywalker's health: 30
-Darth_Vader attacks Luke_Skywalker and deals 35 damage!
-Luke_Skywalker is defeated!
+Ezra Bridger's health: 40, Darth Vader's health: 95
+Ezra Bridger attacks Darth Vader and deals 5 damage!
+Darth Vader attacks Ezra Bridger and deals 40 damage!
+Ezra Bridger is defeated!

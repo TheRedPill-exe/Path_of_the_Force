@@ -80,6 +80,15 @@ void clearConsole() {
         system("clear");  // Comando para Linux y macOS
     #endif
 }
-
+bool exists(const char* fileName) {
+    char filePath[100];
+    snprintf(filePath, sizeof(filePath), "../users/%s", fileName);
+    FILE* user = fopen(filePath, "rb");
+        if (user) {
+            fclose(user);
+            return true;
+        }
+    return false;
+}
 #include <cstdlib>
 
