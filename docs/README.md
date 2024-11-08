@@ -58,9 +58,9 @@ Los jugadores pueden crear personajes seleccionando diferentes atributos. Cada p
 Cada jugador puede crear un perfil protegido por contraseña. Los datos de cada perfil están encriptados para mayor seguridad.
 
 <!-- GIF mostrando el acceso mediante contraseña y creación de perfil -->
-![Acceso de Perfil](assets/gif/perfil_acceso.gif)
+[![Acceso de Perfil]("https://github.com/TheRedPill-exe/Path_of_the_Force/blob/main/assets/decrypt.gif" width="30%)
 
-### 🔹 Misiones y Recompensas
+### 🔹 Misiones y Recompensas (en desarrollo)
 Explora misiones únicas que recompensan al jugador con experiencia y objetos especiales para mejorar sus personajes.
 
 <!-- GIF mostrando una misión o recompensa -->
@@ -82,7 +82,7 @@ Path_of_the_Force/
 │   ├── BattleSystem.cpp/h   # Sistema de combate
 │   ├── ProfileManager.cpp/h # Manejo de perfiles y encriptación
 │   ├── Inventory.cpp/h      # Sistema de inventario
-│   ├── MissionSystem.cpp/h  # Lógica de misiones y recompensas
+│   ├── MissionSystem.cpp/h  # Lógica de misiones y recompensas / en desarrollo
 │   ├── Display.cpp/h        # Funciones para mostrar arte ASCII
 │   └── Utilities.cpp/h      # Funciones auxiliares y utilidades
 │
