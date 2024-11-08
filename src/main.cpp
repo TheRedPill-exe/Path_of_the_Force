@@ -47,7 +47,7 @@ int main() {
     bool running = true;
     int sizech = 10;
     char nameC[50] = "logo";
-    //std::thread audioThread(playAudio, "../assets/starwars.wav");
+    std::thread audioThread(playAudio, "../assets/starwars.wav");
     displayFileWithOffset("nave");
     while (running) {
         printCharac(nameC);
