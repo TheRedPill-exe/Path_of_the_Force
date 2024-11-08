@@ -2,61 +2,30 @@ Battle between Darth_Vader and Luke_Skywalker
 
 --- Turn 1 ---
 Darth_Vader's health: 100, Luke_Skywalker's health: 100
-Darth_Vader attacks Luke_Skywalker and deals 10 damage!
-Luke_Skywalker attacks Darth_Vader and deals 10 damage!
+Darth_Vader attacks Luke_Skywalker and deals 35 damage!
+Luke_Skywalker attacks Darth_Vader and deals 15 damage!
 
 --- Turn 2 ---
-Darth_Vader's health: 90, Luke_Skywalker's health: 90
-Darth_Vader attacks Luke_Skywalker and deals 10 damage!
+Darth_Vader's health: 85, Luke_Skywalker's health: 65
+Darth_Vader defends, boosting defense temporarily!
 Luke_Skywalker attacks Darth_Vader and deals 10 damage!
 
 --- Turn 3 ---
-Darth_Vader's health: 80, Luke_Skywalker's health: 80
-Darth_Vader attacks Luke_Skywalker and deals 10 damage!
+Darth_Vader's health: 75, Luke_Skywalker's health: 65
+Darth_Vader defends, boosting defense temporarily!
 Luke_Skywalker attacks Darth_Vader and deals 10 damage!
 
 --- Turn 4 ---
-Darth_Vader's health: 70, Luke_Skywalker's health: 70
-Darth_Vader attacks Luke_Skywalker and deals 10 damage!
+Darth_Vader's health: 65, Luke_Skywalker's health: 65
+Darth_Vader defends, boosting defense temporarily!
 Luke_Skywalker attacks Darth_Vader and deals 10 damage!
 
 --- Turn 5 ---
-Darth_Vader's health: 60, Luke_Skywalker's health: 60
-Darth_Vader attacks Luke_Skywalker and deals 10 damage!
-Luke_Skywalker attacks Darth_Vader and deals 10 damage!
+Darth_Vader's health: 55, Luke_Skywalker's health: 65
+Darth_Vader attacks Luke_Skywalker and deals 35 damage!
+Luke_Skywalker attacks Darth_Vader and deals 15 damage!
 
 --- Turn 6 ---
-Darth_Vader's health: 50, Luke_Skywalker's health: 50
-Darth_Vader attacks Luke_Skywalker and deals 10 damage!
-Luke_Skywalker attacks Darth_Vader and deals 10 damage!
-
---- Turn 7 ---
-Darth_Vader's health: 40, Luke_Skywalker's health: 40
-Darth_Vader defends, boosting defense temporarily!
-Luke_Skywalker attacks Darth_Vader and deals 5 damage!
-
---- Turn 8 ---
-Darth_Vader's health: 35, Luke_Skywalker's health: 40
-Darth_Vader attacks Luke_Skywalker and deals 10 damage!
-Luke_Skywalker attacks Darth_Vader and deals 10 damage!
-
---- Turn 9 ---
-Darth_Vader's health: 25, Luke_Skywalker's health: 30
-Darth_Vader defends, boosting defense temporarily!
-Luke_Skywalker attacks Darth_Vader and deals 5 damage!
-
---- Turn 10 ---
-Darth_Vader's health: 20, Luke_Skywalker's health: 30
-Darth_Vader defends, boosting defense temporarily!
-Luke_Skywalker attacks Darth_Vader and deals 5 damage!
-
---- Turn 11 ---
-Darth_Vader's health: 15, Luke_Skywalker's health: 30
-Darth_Vader attacks Luke_Skywalker and deals 10 damage!
-Luke_Skywalker attacks Darth_Vader and deals 10 damage!
-
---- Turn 12 ---
-Darth_Vader's health: 5, Luke_Skywalker's health: 20
-Darth_Vader defends, boosting defense temporarily!
-Luke_Skywalker attacks Darth_Vader and deals 5 damage!
-Darth_Vader is defeated!
+Darth_Vader's health: 40, Luke_Skywalker's health: 30
+Darth_Vader attacks Luke_Skywalker and deals 35 damage!
+Luke_Skywalker is defeated!

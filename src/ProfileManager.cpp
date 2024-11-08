@@ -61,8 +61,7 @@ void modifyCharacterAttributes(Character& characterP) {
 
 void modifyCharacterSkills(Character& characterP) {
     int option;
-    cout << "\nType 1 to select skills from list or 0 to enter manually: ";
-    cin >> option;
+    option = readInt("\nType 1 to select skills from list or 0 to enter manually: ", 0, 1);
     configureCharacterSkills(characterP, option);
 }
 
@@ -101,8 +100,7 @@ void modifyCharacter(char profileName[], const char key[]) {
 
     // Solicitar y verificar la contraseña
     char inputPassword[20];
-    cout << "Enter your password: ";
-    readString("", inputPassword, sizeof(inputPassword));
+    readString("Enter your password: ", inputPassword, sizeof(inputPassword));
     encrypt(inputPassword, key);
     if (strcmp(inputPassword, characterP.password) != 0) {
         cout << "Incorrect password. Access denied." << endl;
@@ -118,8 +116,7 @@ void modifyCharacter(char profileName[], const char key[]) {
         cout << "2. Modify Skills" << endl;
         cout << "3. Modify Items" << endl;
         cout << "4. Save and Exit" << endl;
-        cout << "Choose an option: ";
-        cin >> option;
+        option = readInt("Choose an option: ", 1, 4);
 
         switch (option) {
             case 1:
